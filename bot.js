@@ -39,4 +39,5 @@ client.login(process.env.BOT_TOKEN);//BOT_TOKEN is the Client Secret
 
 async function CatCmd(message){
     var url = await CatModule.getUrl();
+    console.log(URL);
 }
