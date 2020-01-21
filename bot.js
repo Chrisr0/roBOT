@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 
+const CatModule = require('./modules/cat.js');
+
 console.log('Start');
 
 const client = new Discord.Client();
@@ -19,6 +21,11 @@ client.on('message', message => {
     if (message.content === 'ping') {
 
        message.reply('pong');
+
+       }
+    if (message.content === 'cat') {
+
+       message.reply({files:[CatModule.getUrl()]});
 
        }
 
