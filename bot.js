@@ -25,7 +25,7 @@ client.on('message', message => {
        }
     if (message.content === 'cat') {
 
-       message.reply({files:[CatModule.getUrl()]});
+       message.reply({files:['https://via.placeholder.com/150']});
 
        }
 
