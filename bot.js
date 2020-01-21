@@ -25,7 +25,7 @@ client.on('message', message => {
        }
     if (message.content === 'cat') {
 
-       CatSend(message);
+       CatModule.send(message);
 
        }
 
