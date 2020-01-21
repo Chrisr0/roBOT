@@ -10,7 +10,7 @@ exports.getUrl = function() {
         url = response.json()[0].url;
     }else{
         url = 'error';
-        console.log(response.status);
+        console.log(response.statusText);
     }
 
     return url;
