@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 
+console.log('Start');
+
 const client = new Discord.Client();
 
  
