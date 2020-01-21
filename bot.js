@@ -25,7 +25,7 @@ client.on('message', message => {
        }
     if (message.content === 'cat') {
 
-       message.reply({files:['https://via.placeholder.com/150']});
+       message.reply({files:['http://www.dnnsoftware.com/Content/Dnn.Platform/Documentation/Resources/Images/Admin/AdvURLManagement/AdvURLManagement_TestURL_650x374.png']});
 
        }
 
