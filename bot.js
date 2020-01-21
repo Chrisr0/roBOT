@@ -25,7 +25,7 @@ client.on('message', message => {
        }
     if (message.content === 'cat') {
 
-       CatCmd(message);
+       CatSend(message);
 
        }
 
@@ -36,8 +36,3 @@ client.on('message', message => {
 // THIS  MUST  BE  THIS  WAY
 
 client.login(process.env.BOT_TOKEN);//BOT_TOKEN is the Client Secret
-
-async function CatCmd(message){
-    var url = await CatModule.getUrl();
-    console.log(URL);
-}
