@@ -1,3 +1,5 @@
+const fetch = require("node-fetch");
+
 var catApiUrl = 'https://api.thecatapi.com/v1/images/search';
 
 exports.getUrl = function() {
