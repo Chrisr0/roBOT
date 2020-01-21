@@ -2,7 +2,7 @@ const request = require('request');
 
 var catApiUrl = 'https://api.thecatapi.com/v1/images/search';
 
-exports.getUrl = async function() {
+exports.getUrl = function() {
     var stream;
     stream = request(catApiUrl);
     const chunks = []
