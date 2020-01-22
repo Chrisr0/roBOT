@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-const CatModule = require('./modules/cat.js');
+const CmdHandler = require('./cmdHandler.js');
 const GreetModule = require('./modules/greeting.js')
 
 const prefix = 't.';
@@ -22,21 +22,7 @@ client.on('ready', () => {
 client.on('message', message => {
     if (message.isMentioned(client.user)) message.reply('My prefix: ' + prefix);
     if (!message.content.startsWith(prefix)) return;
-    var cmd = message.content.substring(prefix.length);
-    var args = cmd.split(" ");
-    cmd = args[0];
-    args.shift();
-    if (cmd === 'ping') {
-
-       message.reply('pong');
-
-       }
-    if (cmd === 'cat') {
-
-       CatModule.send(message);
-
-       }
-
+    CmdHandler.exec(message);
 });
 
 client.on('guildMemberAdd', member => {
