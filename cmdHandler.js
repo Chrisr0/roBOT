@@ -24,7 +24,7 @@ exports.exec = function (message){
 
     }
     if (cmd === 'rank') {
-        LevelModule.getScore(message);
+        LevelModule.getLevel(message);
     }
 
 }
