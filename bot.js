@@ -3,6 +3,8 @@ const Discord = require('discord.js');
 const CatModule = require('./modules/cat.js');
 const GreetModule = require('./modules/greeting.js')
 
+const prefix = 't.';
+
 console.log('Start');
 
 const client = new Discord.Client();
@@ -18,13 +20,17 @@ client.on('ready', () => {
  
 
 client.on('message', message => {
-
-    if (message.content === 'ping') {
+    if (!message.content.startsWith(prefix)) return;
+    var cmd = message.substring(prefix.length);
+    var args = cmd.split(" ");
+    cmd = args[0];
+    args.shift();
+    if (cmd === 'ping') {
 
        message.reply('pong');
 
        }
-    if (message.content === 'cat') {
+    if (cmd === 'cat') {
 
        CatModule.send(message);
 
