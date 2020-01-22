@@ -40,7 +40,7 @@ exports.addLevel = function (message) {
 	if (score.exp >= expNeeded) {
 		score.exp -= expNeeded;
 		score.level++;
-		message.channel.send(':gg: ${message.member} wbił/a ${score.level} poziom!');
+		message.channel.send(`:gg: ${message.member} wbił/a ${score.level} poziom!`);
 	}
 	setScore.run(score);
 }
@@ -49,5 +49,5 @@ exports.getLevel = function (message) {
 	console.log('GETLEVEL');
 	let score = getScore.get(message.author.id, message.guild.id);
 	if (!score) return;
-	message.reply('Masz ${score.exp} pd i ${score.level} poziom.');
+	message.reply(`Masz ${score.exp} pd i ${score.level} poziom.`);
 }
