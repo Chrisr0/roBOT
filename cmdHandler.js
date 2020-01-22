@@ -16,5 +16,10 @@ exports.exec = function (message){
 
        FunModule.catSend(message);
 
-       }
+    }
+    if (cmd === 'dog') {
+
+        FunModule.dogSend(message);
+
+    }
 }
