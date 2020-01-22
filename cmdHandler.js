@@ -1,6 +1,6 @@
 const Discord = require ('discord.js');
 
-const CatModule = require('./modules/cat.js');
+const FunModule = require('./modules/fun.js');
 
 exports.exec = function (message){
     var cmd = message.content.substring(2); //prefix.length
@@ -14,7 +14,7 @@ exports.exec = function (message){
        }
     if (cmd === 'cat') {
 
-       CatModule.send(message);
+       CatModule.catSend(message);
 
        }
 }
