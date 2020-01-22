@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const request = require('request');
-const querystrong = require('querystring');
+const querystring = require('querystring');
 
 var catApiUrl = 'https://api.thecatapi.com/v1/images/search';
 var dogApiUrl = 'https://api.thedogapi.com/v1/images/search';
