@@ -14,7 +14,7 @@ exports.exec = function (message){
        }
     if (cmd === 'cat') {
 
-       CatModule.catSend(message);
+       FunModule.catSend(message);
 
        }
 }
