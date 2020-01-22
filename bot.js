@@ -20,6 +20,7 @@ client.on('ready', () => {
  
 
 client.on('message', message => {
+    if (message.isMentioned(client.user)) message.reply('My prefix: ' + prefix);
     if (!message.content.startsWith(prefix)) return;
     var cmd = message.content.substring(prefix.length);
     var args = cmd.split(" ");
