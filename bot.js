@@ -15,6 +15,7 @@ const talkedRecently = new Set();
 client.on('ready', () => {
 
     console.log('I am ready!');
+    LevelModule.init();
 
 });
 
