@@ -1,15 +1,16 @@
 const Discord = require('discord.js');
 
 const CmdHandler = require('./cmdHandler.js');
-const GreetModule = require('./modules/greeting.js')
+const GreetModule = require('./modules/greeting.js');
+const LevelModule = require('./modules/levels.js');
 
 const prefix = 't.';
 
 console.log('Start');
 
 const client = new Discord.Client();
+const talkedRecently = new Set();
 
- 
 
 client.on('ready', () => {
 
@@ -17,9 +18,19 @@ client.on('ready', () => {
 
 });
 
- 
-
 client.on('message', message => {
+    if (message.author.bot) return;
+    if (!talkedRecently.has(message.author.id)) {
+        // the user can type the command ... your command code goes here :)
+        LevelModule.addLevel(message);
+
+        // Adds the user to the set so that they can't talk for a minute
+        talkedRecently.add(message.author.id);
+        setTimeout(() => {
+            // Removes the user from the set after a minute
+            talkedRecently.delete(message.author.id);
+        }, 60000);
+    }
     if (message.isMentioned(client.user)) message.reply('My prefix: ' + prefix);
     if (!message.content.startsWith(prefix)) return;
     CmdHandler.exec(message);
@@ -29,8 +40,5 @@ client.on('guildMemberAdd', member => {
     GreetModule.send(member);
 });
 
- 
 
-// THIS  MUST  BE  THIS  WAY
-
-client.login(process.env.BOT_TOKEN);//BOT_TOKEN is the Client Secret
+client.login(process.env.BOT_TOKEN);

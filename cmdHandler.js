@@ -1,6 +1,7 @@
 const Discord = require ('discord.js');
 
 const FunModule = require('./modules/fun.js');
+const LevelModule = require('./modules/levels.js');
 
 exports.exec = function (message){
     var cmd = message.content.substring(2); //prefix.length
@@ -22,4 +23,8 @@ exports.exec = function (message){
         FunModule.dogSend(message);
 
     }
+    if (cmd === 'rank') {
+        LevelModule.getScore(message);
+    }
+
 }

@@ -20,8 +20,9 @@
 
     "request": "2.81.0",
 
-    "querystring": "0.2.0"
+    "querystring": "0.2.0",
 
+    "better-sqlite3": "5.4.3"
   }
 
 }
