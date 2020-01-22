@@ -6,6 +6,7 @@ var getScore;
 var setScore;
 
 exports.init = function () {
+	console.log('INITLEVEL');
 	const table = sql.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'scores';").get();
 	if (!table['count(*)']) {
 		// If the table isn't there, create it and setup the database correctly.
@@ -21,7 +22,8 @@ exports.init = function () {
 	setScore = sql.prepare("INSERT OR REPLACE INTO scores (id, user, guild, exp, level) VALUES (@id, @user, @guild, @exp, @level);");
 }
 
-exports.addLevel = function(message){
+exports.addLevel = function (message) {
+	console.log('ADDLEVEL');
 	let score = getScore.get(message.author.id, message.guild.id);
 	if (!score) {
 		score = {
@@ -44,6 +46,7 @@ exports.addLevel = function(message){
 }
 
 exports.getLevel = function (message) {
+	console.log('GETLEVEL');
 	let score = getScore.get(message.author.id, message.guild.id);
 	if (!score) return;
 	message.reply('Masz ${score.exp} pd i ${score.level} poziom.');
