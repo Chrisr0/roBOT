@@ -21,7 +21,7 @@ client.on('ready', () => {
 
 client.on('message', message => {
     if (!message.content.startsWith(prefix)) return;
-    var cmd = message.substring(prefix.length);
+    var cmd = message.content.substring(prefix.length);
     var args = cmd.split(" ");
     cmd = args[0];
     args.shift();
