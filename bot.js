@@ -35,7 +35,22 @@ client.on('message', message => {
         }, 60000);
     }
     if (message.isMentioned(client.user)) message.reply('My prefix: ' + prefix);
-    if (!message.content.startsWith(prefix)) return;
+    if (!message.content.startsWith(prefix)) {
+        if (UtilityModule.autoSpoiler.has(message.author.id)) {
+            let channel = message.channel;
+            message.attachments.forEach(function (attachments) {
+                message.delete();
+                channel.send({
+                    files: [{
+                        attachment: attachments.url,
+                        name: `SPOILER_FILE`
+                    }]
+                });
+            });
+        } else {
+            return;
+        }
+    }
     CmdHandler.exec(message);
 });
 
