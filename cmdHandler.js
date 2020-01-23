@@ -32,6 +32,9 @@ exports.exec = function (message){
     if (cmd === 'anime') {
         FunModule.animeSend(message);
     }
+    if (cmd === 'hentai') {
+        FunModule.hentaiSend(message);
+    }
     if (cmd === 'help'){
         message.reply('Pomoc:\n\nFun:\n-cat - losowe zdjęcie kota\n-dog - losowe zdjęcie psa\n-sauce - losowy numer z zakresu od 0 do 400 000 (Do celów naukowych)[przyp. ViaS]');
     }
