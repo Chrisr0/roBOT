@@ -21,7 +21,7 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-    message.attachments.forEach(function (value) { console.log(value);})
+    message.attachments.forEach(function (value) { console.log(value.url);})
     if (message.author.bot) return;
     if (!talkedRecently.has(message.author.id)) {
         // the user can type the command ... your command code goes here :)
