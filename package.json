@@ -22,6 +22,8 @@
 
     "querystring": "0.2.0",
 
+    "random-puppy": "1.1.0",
+
     "better-sqlite3": "5.4.3"
   }
 
