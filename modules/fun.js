@@ -50,3 +50,7 @@ exports.dogSend = function (message) {
         message.reply({ files: [JSON.parse(body)[0].url] });
     });
 }
+
+exports.randSend = function (message){
+    message.reply(`Twój numer to ${Math.floor(Math.random() * (400000 - 0 + 1) + 0)}`);
+}
