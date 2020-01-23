@@ -64,7 +64,10 @@ exports.animeSend = function(message){
 }
 
 exports.hentaiSend = function (message) {
-    if (!message.channel.nsfw) return;
+    if (!message.channel.nsfw) {
+        message.reply('Ten kanał nie jest NSFW');
+        return;
+    }
     randomPuppy('hentai')
     .then(url => {
         message.reply({ files: [url] });
