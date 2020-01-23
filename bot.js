@@ -15,6 +15,7 @@ const talkedRecently = new Set();
 client.on('ready', () => {
 
     console.log('I am ready!');
+    client.user.setPresence({ status: 'online', game: { name: 't.help' } });
     LevelModule.init();
 
 });
