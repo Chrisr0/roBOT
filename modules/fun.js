@@ -64,6 +64,8 @@ exports.animeSend = function(message){
 }
 
 exports.hentaiSend = function (message) {
+    console.log(message.channel.name);
+    console.log(message.channel.nsfw);
     if (!message.channel.nsfw) {
         message.reply('Ten kanał nie jest NSFW');
         return;
