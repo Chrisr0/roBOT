@@ -21,6 +21,7 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
+    console.log(message.content);
     if (message.author.bot) return;
     if (!talkedRecently.has(message.author.id)) {
         // the user can type the command ... your command code goes here :)
