@@ -32,7 +32,7 @@ exports.addLevel = function (message) {
             }
         }
         score.exp += Math.floor(Math.random() * (25 - 15 + 1) + 15);
-        let expNeeded = 5 * Math.pow(score.level) + 50 * score.level + 100;
+        let expNeeded = 5 * Math.pow(score.level, 2) + 50 * score.level + 100;
         console.log(expNeeded);
         if (score.exp >= expNeeded) {
             score.exp -= expNeeded;
