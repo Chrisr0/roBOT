@@ -39,11 +39,11 @@ client.on('message', message => {
         if (UtilityModule.autoSpoiler.has(message.author.id)) {
             let channel = message.channel;
             message.attachments.forEach(function (attachments) {
-                message.delete();
+                message.delete(1);
                 channel.send({
                     files: [{
                         attachment: attachments.url,
-                        name: `SPOILER_FILE`
+                        name: 'SPOILER_FILE.'.attachments.url.split(".").pop
                     }]
                 });
             });
