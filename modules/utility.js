@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 
-exports.autoSpoiler = new Set();
+var autoSpoiler = new Set();
+
+exports.autoSpoiler = autoSpoiler;
 
 exports.toggle = function (message) {
     if (autoSpoiler.has(message.author.id)) {
