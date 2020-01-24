@@ -1,26 +1,20 @@
 const Discord = require('discord.js');
-const SQLite = require("better-sqlite3");
-const sql = new SQLite('./levels.sqlite');
+const mysql = require('mysql');
 
-var getScore;
-var setScore;
+let pool = mysql.createPool({
+    connectionLimit: 10,
+    host: 'remotemysql.com:3306',
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASS,
+    database: '5Av8ACI1s1'
+});
 
 exports.init = function () {
-	console.log('INITLEVEL');
-	const table = sql.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'scores';").get();
-	if (!table['count(*)']) {
-		// If the table isn't there, create it and setup the database correctly.
-		sql.prepare("CREATE TABLE scores (id TEXT PRIMARY KEY, user TEXT, guild TEXT, exp INTEGER, level INTEGER);").run();
-		// Ensure that the "id" row is always unique and indexed.
-		sql.prepare("CREATE UNIQUE INDEX idx_scores_id ON scores (id);").run();
-		sql.pragma("synchronous = 1");
-		sql.pragma("journal_mode = wal");
-	}
-
-	// And then we have two prepared statements to get and set the score data.
-	getScore = sql.prepare("SELECT * FROM scores WHERE user = ? AND guild = ?");
-	setScore = sql.prepare("INSERT OR REPLACE INTO scores (id, user, guild, exp, level) VALUES (@id, @user, @guild, @exp, @level);");
+    console.log('INITLEVEL');
 }
+
+var getScore = "SELECT * FROM scores WHERE user = ? AND guild = ?";
+var setScore = "INSERT OR REPLACE INTO scores (id, user, guild, exp, level) VALUES (?, ?, ?, ?, ?);";
 
 exports.addLevel = function (message) {
 	console.log('ADDLEVEL');
@@ -42,12 +36,19 @@ exports.addLevel = function (message) {
 		score.level++;
 		message.channel.send(`:gg: ${message.member} wbił/a ${score.level} poziom!`);
 	}
-	setScore.run(score);
+	pool.query(setScore, [score.id, score.user, score.guild, score.exp, score.level], function (error, results, fields) {
+	    if (error) {
+	        return console.error(error.message);
+	    }
+	});
 }
 
 exports.getLevel = function (message) {
-	console.log('GETLEVEL');
-	let score = getScore.get(message.author.id, message.guild.id);
-	if (!score) return;
-	message.reply(`Masz ${score.exp} pd i ${score.level} poziom.`);
+	pool.query(getScore, [message.author.id, message.guild.id], function (error, results, fields) {
+	    if (error) {
+	        return console.error(error.message);
+	    }
+	    console.log(results);
+	});
+	//message.reply(`Masz ${score.exp} pd i ${score.level} poziom.`);
 }

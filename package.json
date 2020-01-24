@@ -24,7 +24,7 @@
 
         "random-puppy": "Chrisr0/random-puppy#master",
 
-        "better-sqlite3": "5.4.3"
+        "mysql": "2.18.1"
     }
 
 }
