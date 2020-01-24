@@ -37,7 +37,8 @@ exports.addLevel = function (message) {
         if (score.exp >= expNeeded) {
             score.exp -= expNeeded;
             score.level++;
-            message.channel.send(`:gg: ${message.member} wbił/a ${score.level} poziom!`);
+            const gg = message.guild.emojis.find(emoji => emoji.name === "gg");
+            message.channel.send(`${gg} ${message.member} wbił/a ${score.level} poziom!`);
         }
         pool.query(setScore, [score.id, score.user, score.guild, score.exp, score.level, score.exp, score.level], function (error, results, fields) {
             if (error) {
