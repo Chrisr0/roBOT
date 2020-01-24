@@ -14,7 +14,7 @@ exports.init = function () {
 }
 
 var getScore = "SELECT * FROM scores WHERE user = ? AND guild = ?";
-var setScore = "INSERT INTO scores (id,user,guild,exp.level) VALUES (?,?,?,?,?) ON DUPLICATE KEY UPDATE exp = ?, level = ?";
+var setScore = "INSERT INTO scores (id,user,guild,exp,level) VALUES (?,?,?,?,?) ON DUPLICATE KEY UPDATE exp = ?, level = ?";
 
 exports.addLevel = function (message) {
 	console.log('ADDLEVEL');
