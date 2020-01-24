@@ -49,7 +49,7 @@ exports.getLevel = function (message) {
 	    if (error) {
 	        return console.error(error.message);
 	    }
-	    console.log(results);
+	    console.log(results[0].exp);
 	});
 	//message.reply(`Masz ${score.exp} pd i ${score.level} poziom.`);
 }
