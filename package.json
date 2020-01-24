@@ -14,17 +14,17 @@
 
   },
 
-  "dependencies": {
+    "dependencies": {
 
-    "discord.js": "11.5.1",
+        "discord.js": "11.5.1",
 
-    "request": "2.81.0",
+        "request": "2.81.0",
 
-    "querystring": "0.2.0",
+        "querystring": "0.2.0",
 
-    "random-puppy": "1.1.0",
+        "random-puppy": "Chrisr0/random-puppy#master",
 
-    "better-sqlite3": "5.4.3"
-  }
+        "better-sqlite3": "5.4.3"
+    }
 
 }

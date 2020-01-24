@@ -56,8 +56,11 @@ exports.randSend = function (message){
     message.reply(`Twój numer to ${Math.floor(Math.random() * (400000 - 0 + 1) + 0)}`);
 }
 
+var animeReddits = ["Animewallpaper", "Pixiv", "Moescape", "ZettaiRyouiki", "Patchuu", "MoeStash", "Melanime", "AnimePhoneWallpapers", "awwnime"];
+var list = ["new", "hot"]
+
 exports.animeSend = function(message){
-    randomPuppy('Animewallpaper')
+    randomPuppy(animeReddits[Math.floor(Math.random() * animeReddits.length)], list[Math.floor(Math.random() * list.length)])
     .then(url => {
         message.reply({ files: [url]});
     })
