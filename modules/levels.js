@@ -17,9 +17,7 @@ var getScore = "SELECT * FROM scores WHERE user = ? AND guild = ?";
 var setScore = "INSERT INTO scores (id,user,guild,exp,level) VALUES (?,?,?,?,?) ON DUPLICATE KEY UPDATE exp = ?, level = ?";
 
 exports.addLevel = function (message) {
-	console.log('ADDLEVEL');
     //let score = getScore.get(message.author.id, message.guild.id);
-	let score = null;
 	if (!score) {
 		score = {
 			id: `${message.guild.id}-${message.author.id}`,
@@ -49,7 +47,6 @@ exports.getLevel = function (message) {
 	    if (error) {
 	        return console.error(error.message);
 	    }
-	    console.log(results[0].exp);
+	    message.reply(`Masz ${results[0].exp} pd i ${results[0].level} poziom.`);
 	});
-	//message.reply(`Masz ${score.exp} pd i ${score.level} poziom.`);
 }
