@@ -18,6 +18,7 @@ var setScore = "INSERT INTO scores (id,user,guild,exp,level) VALUES (?,?,?,?,?) 
 
 exports.addLevel = function (message) {
     //let score = getScore.get(message.author.id, message.guild.id);
+    let score = null;
 	if (!score) {
 		score = {
 			id: `${message.guild.id}-${message.author.id}`,
