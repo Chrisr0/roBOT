@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 const CmdHandler = require('./cmdHandler.js');
 const GreetModule = require('./modules/greeting.js');
 const LevelModule = require('./modules/levels.js');
+const UtilityModule = require('./modules/utility.js');
 
 const prefix = 't.';
 
