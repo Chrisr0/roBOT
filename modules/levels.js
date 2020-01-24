@@ -28,12 +28,12 @@ exports.addLevel = function (message) {
                 user: message.author.id,
                 guild: message.guild.id,
                 exp: 0,
-                level: 1
+                level: 0
             }
         }
         score.exp += Math.floor(Math.random() * (25 - 15 + 1) + 15);
         let expNeeded = 5 * Math.pow(score.level) + 50 * score.level + 100;
-
+        console.log(expNeeded);
         if (score.exp >= expNeeded) {
             score.exp -= expNeeded;
             score.level++;
