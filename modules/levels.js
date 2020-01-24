@@ -14,7 +14,7 @@ exports.init = function () {
 }
 
 var getScore = "SELECT * FROM scores WHERE user = ? AND guild = ?";
-var setScore = "INSERT OR REPLACE INTO scores (id, user, guild, exp, level) VALUES (?, ?, ?, ?, ?)";
+var setScore = "INSERT INTO scores (id,user,guild,exp.level) VALUES (?,?,?,?,?) ON DUPLICATE KEY UPDATE exp = ?, level = ?";
 
 exports.addLevel = function (message) {
 	console.log('ADDLEVEL');
@@ -37,7 +37,7 @@ exports.addLevel = function (message) {
 		score.level++;
 		message.channel.send(`:gg: ${message.member} wbił/a ${score.level} poziom!`);
 	}
-	pool.query(setScore, [score.id, score.user, score.guild, score.exp, score.level], function (error, results, fields) {
+	pool.query(setScore, [score.id, score.user, score.guild, score.exp, score.level, score.exp, score.level], function (error, results, fields) {
 	    if (error) {
 	        return console.error(error.message);
 	    }
