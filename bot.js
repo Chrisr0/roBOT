@@ -43,7 +43,7 @@ client.on('message', message => {
                 channel.send({
                     files: [{
                         attachment: attachments.url,
-                        name: 'SPOILER_FILE.'.attachments.url.split(".").pop
+                        name: `SPOILER_FILE.${attachments.url.split(".").pop}`
                     }]
                 });
             });
