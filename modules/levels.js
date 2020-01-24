@@ -18,7 +18,8 @@ var setScore = "INSERT OR REPLACE INTO scores (id, user, guild, exp, level) VALU
 
 exports.addLevel = function (message) {
 	console.log('ADDLEVEL');
-	let score = getScore.get(message.author.id, message.guild.id);
+    //let score = getScore.get(message.author.id, message.guild.id);
+	let score = null;
 	if (!score) {
 		score = {
 			id: `${message.guild.id}-${message.author.id}`,
