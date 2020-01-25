@@ -15,20 +15,19 @@ exports.toggle = function (message) {
 }
 
 exports.exec = function (message) {
-    let attachments = message.attachments;
-    let avatarURL = message.author.avatarURL;
-    message.channel.createWebhook(message.member.nickname,avatarURL)
-    .then(wh => wh.edit(message.member.nickname,avatarURL))
-    .then(wh => {
-        message.attachments.forEach(function (attachments) {
-            wh.send({
-                files: [{
-                    attachment: attachments.url,
-                    name: `SPOILER_FILE.${attachments.url.split(".").pop()}`
-                }]
-            });
-        });
-    })
-    message.delete(3);
+    let content = {
+        files: []
+    };
+    message.attachments.forEach(attachmentOld => {
+        let attachmentNew = {
+            attachment: attachmentOld.url,
+            name: `SPOILER_FILE.${attachmentOld.url.split(".").pop()}`
+        };
+        content.files.push(attachmentNew);
+    });
+    message.channel.createWebhook(message.member.nickname, message.author.avatarURL)
+    .then(wh => wh.edit(message.member.nickname, message.author.avatarURL))
+    .then(wh => wh.send(content))
+    .then(() => message.delete(3));
     
 }
