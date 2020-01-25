@@ -26,7 +26,7 @@ exports.exec = function (message) {
         content.files.push(attachmentNew);
     });
     console.log(message.attachments);
-    console.log(content);
+    console.log(JSON.stringify(content));
     message.channel.createWebhook(message.member.nickname, message.author.avatarURL)
     .then(wh => wh.edit(message.member.nickname, message.author.avatarURL))
     .then(wh => wh.send(content))
