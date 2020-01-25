@@ -25,10 +25,15 @@ exports.exec = function (message) {
         };
         content.files.push(attachmentNew);
     });
+    console.log(message.content);
+    console.log(content);
     message.channel.createWebhook(message.member.nickname, message.author.avatarURL)
     .then(wh => wh.edit(message.member.nickname, message.author.avatarURL))
     .then(wh => wh.send(content))
-   // .then(wh => wh.delete())
+    .then(wh => {
+        wait(5);
+        wh.delete();
+    })
     .then(() => message.delete(3));
     
 }
