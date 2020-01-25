@@ -30,7 +30,7 @@ exports.exec = function (message) {
     message.channel.createWebhook(message.member.nickname, message.author.avatarURL)
     .then(wh => wh.edit(message.member.nickname, message.author.avatarURL))
     .then(wh => wh.send(content))
-    .then(wh => { return new Promise(resolve => setTimeout(resolve(wh), 3000)) })
+    .then(wh => { return new Promise(resolve => setTimeout(resolve(wh), 5000)) })
     .then(wh => wh.delete())
     .then(() => message.delete());
     
