@@ -13,3 +13,20 @@ exports.toggle = function (message) {
         autoSpoiler.add(message.author.id);
     }
 }
+
+exports.exec = function (message) {
+    message.channel.createWebhook(message.member.nickname,message.user.avatarURL)
+    .then(wh => wh.edit(message.member.nickname,message.user.avatarURL))
+    .then(wh => {
+        message.attachments.forEach(function (attachments) {
+            wh.send({
+                files: [{
+                    attachment: attachments.url,
+                    name: `SPOILER_FILE.${attachments.url.split(".").pop()}`
+                }]
+            });
+        });
+    })
+    message.delete(3);
+    
+}

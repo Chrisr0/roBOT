@@ -37,16 +37,7 @@ client.on('message', message => {
     if (message.isMentioned(client.user)) message.reply('My prefix: ' + prefix);
     if (!message.content.startsWith(prefix)) {
         if (UtilityModule.autoSpoiler.has(message.author.id)) {
-            let channel = message.channel;
-            message.attachments.forEach(function (attachments) {
-                message.delete(15);
-                channel.send({
-                    files: [{
-                        attachment: attachments.url,
-                        name: `SPOILER_FILE.${attachments.url.split(".").pop()}`
-                    }]
-                });
-            });
+            UtilityModule.exec(message);
         } else {
             return;
         }
