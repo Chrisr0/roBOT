@@ -15,7 +15,7 @@ exports.toggle = function (message) {
 }
 
 exports.exec = function (message) {
-    message.channel.createWebhook(message.member.nickname,message.user.avatarURL)
+    message.channel.createWebhook(message.member.nickname,message.author.avatarURL)
     .then(wh => wh.edit(message.member.nickname,message.user.avatarURL))
     .then(wh => {
         message.attachments.forEach(function (attachments) {
