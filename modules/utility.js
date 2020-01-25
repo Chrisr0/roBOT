@@ -15,7 +15,7 @@ exports.toggle = function (message) {
 }
 
 async function sendAll(wh, message){
-    message.attachments.forEach(file => {
+    message.attachments.forEach(async(file) => {
         await wh.send({
             files:[{
                 attachment: file.url,
