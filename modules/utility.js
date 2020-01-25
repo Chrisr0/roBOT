@@ -17,14 +17,14 @@ exports.toggle = function (message) {
 function sendAll(wh, message){
     var counter = [];
     message.attachments.forEach(async(file) => {
-        await wh.send({
+        result = await wh.send({
             files:[{
                 attachment: file.url,
                 name: `SPOILER_FILE.${file.url.split(".").pop()}`
             }]
         });
-        counter.push(file.url);
-        if(counter.length === file.message.attachments.length){
+        counter.push(result);
+        if(counter.length === file.message.attachments.array().length){
             file.message.delete();
             wh.delete()
             .catch(error => console.log(error));
