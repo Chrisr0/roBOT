@@ -24,8 +24,8 @@ function sendAll(wh, message){
             }]
         });
         counter.push(file.url);
-        if(counter.length === message.attachments.length){
-            message.delete();
+        if(counter.length === file.message.attachments.length){
+            file.message.delete();
             wh.delete()
             .catch(error => console.log(error));
         }
