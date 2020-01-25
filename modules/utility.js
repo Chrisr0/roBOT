@@ -24,7 +24,7 @@ async function sendAll(wh, message){
         });
     })
     message.delete();
-    setTimeout(wh.delete, 15000);
+    wh.delete;
     return 1;
 }
 
