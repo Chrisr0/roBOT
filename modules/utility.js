@@ -28,7 +28,7 @@ exports.exec = function (message) {
     message.channel.createWebhook(message.member.nickname, message.author.avatarURL)
     .then(wh => wh.edit(message.member.nickname, message.author.avatarURL))
     .then(wh => wh.send(content))
-    .then(wh => wh.delete())
+   // .then(wh => wh.delete())
     .then(() => message.delete(3));
     
 }
