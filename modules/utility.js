@@ -15,16 +15,17 @@ exports.toggle = function (message) {
 }
 
 async function sendAll(wh, message){
-    message.attachments.forEach(file){
+    message.attachments.forEach(file => {
         await wh.send({
             files:[{
                 attachment: file.url,
                 name: `SPOILER_FILE.${file.url.split(".").pop()}`
             }]
         });
-    }
+    })
     message.delete();
     setTimeout(wh.delete, 15000);
+    return 1;
 }
 
 exports.exec = function (message) {
