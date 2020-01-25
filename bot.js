@@ -36,7 +36,8 @@ client.on('message', message => {
     }
     if (message.isMentioned(client.user)) message.reply('My prefix: ' + prefix);
     if (!message.content.startsWith(prefix)) {
-        if (UtilityModule.autoSpoiler.has(message.author.id) && message.attachments.array.length) {
+        console.log(message.attachments);
+        if (UtilityModule.autoSpoiler.has(message.author.id) && message.attachments) {
             UtilityModule.exec(message);
         } else {
             return;
