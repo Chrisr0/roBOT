@@ -29,7 +29,7 @@ exports.exec = function (message) {
     .then(wh => wh.edit(message.member.nickname, message.author.avatarURL))
     .then(wh => wh.send(content))
     .then(wh => { return new Promise(resolve => setTimeout(resolve(wh), 5000)) })
-    .then(wh => wh.delete())
+    //.then(wh => wh.delete())
     .then(() => message.delete());
     
     
