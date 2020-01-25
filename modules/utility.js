@@ -14,11 +14,11 @@ exports.toggle = function (message) {
     }
 }
 
-exports.exec = function (msg) {
-    console.log(msg.author.avatarURL);
-    let message = msg;
-    message.channel.createWebhook(message.member.nickname,message.author.avatarURL)
-    .then(wh => wh.edit(message.member.nickname,message.user.avatarURL))
+exports.exec = function (message) {
+    let attachments = message.attachments;
+    let avatarURL = message.author.avatarURL;
+    message.channel.createWebhook(message.member.nickname,avatarURL)
+    .then(wh => wh.edit(message.member.nickname,avatarURL))
     .then(wh => {
         message.attachments.forEach(function (attachments) {
             wh.send({
