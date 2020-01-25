@@ -29,6 +29,6 @@ exports.exec = function (message) {
             });
         });
     })
-    msg.delete(3);
+    message.delete(3);
     
 }
