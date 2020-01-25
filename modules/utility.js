@@ -14,23 +14,21 @@ exports.toggle = function (message) {
     }
 }
 
+async function sendAll(wh, message){
+    message.attachments.forEach(file){
+        await wh.send({
+            files:[{
+                attachment: file.url,
+                name: `SPOILER_FILE.${file.url.split(".").pop()}`
+            }]
+        });
+    }
+    message.delete();
+    setTimeout(wh.delete, 15000);
+}
+
 exports.exec = function (message) {
-    let content = {
-        files: []
-    };
-    message.attachments.forEach(attachmentOld => {
-        let attachmentNew = {
-            attachment: attachmentOld.url,
-            name: `SPOILER_FILE.${attachmentOld.url.split(".").pop()}`
-        };
-        content.files.push(attachmentNew);
-    });
     message.channel.createWebhook(message.member.nickname, message.author.avatarURL)
     .then(wh => wh.edit(message.member.nickname, message.author.avatarURL))
-    .then(wh => wh.send(content))
-    .then(wh => { return new Promise(resolve => setTimeout(resolve(wh), 5000)) })
-    //.then(wh => wh.delete())
-    .then(() => message.delete());
-    
-    
+    .then(wh => sendAll(wh, message));
 }
