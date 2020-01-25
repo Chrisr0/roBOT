@@ -28,6 +28,6 @@ exports.exec = function (msg) {
             });
         });
     })
-    msg.delete(3);
+    //msg.delete(3);
     
 }
