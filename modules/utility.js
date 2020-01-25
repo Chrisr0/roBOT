@@ -15,6 +15,7 @@ exports.toggle = function (message) {
 }
 
 exports.exec = function (msg) {
+    console.log(msg.author.avatarURL);
     let message = msg;
     message.channel.createWebhook(message.member.nickname,message.author.avatarURL)
     .then(wh => wh.edit(message.member.nickname,message.user.avatarURL))
@@ -28,6 +29,6 @@ exports.exec = function (msg) {
             });
         });
     })
-    //msg.delete(3);
+    msg.delete(3);
     
 }
