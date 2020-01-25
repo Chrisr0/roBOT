@@ -24,7 +24,8 @@ async function sendAll(wh, message){
         });
     })
     message.delete();
-    wh.delete;
+    wh.delete()
+    .catch(error => console.log(error));
     return 1;
 }
 
