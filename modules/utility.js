@@ -14,7 +14,8 @@ exports.toggle = function (message) {
     }
 }
 
-async function sendAll(wh, message){
+function sendAll(wh, message){
+    var counter = [];
     message.attachments.forEach(async(file) => {
         await wh.send({
             files:[{
@@ -22,10 +23,13 @@ async function sendAll(wh, message){
                 name: `SPOILER_FILE.${file.url.split(".").pop()}`
             }]
         });
-    })
-    message.delete();
-    wh.delete()
-    .catch(error => console.log(error));
+        counter.push(file.url);
+        if(counter.length === message.attachments.length){
+            message.delete();
+            wh.delete()
+            .catch(error => console.log(error));
+        }
+    });
     return 1;
 }
 
