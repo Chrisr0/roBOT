@@ -43,7 +43,7 @@ client.on('message', message => {
             return;
         }
     }
-    CmdHandler.exec(message);
+    CmdHandler.exec(message,client);
 });
 
 client.on('guildMemberAdd', member => {

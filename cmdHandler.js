@@ -4,7 +4,7 @@ const FunModule = require('./modules/fun.js');
 const LevelModule = require('./modules/levels.js');
 const UtilityModule = require('./modules/utility.js');
 
-exports.exec = function (message){
+exports.exec = function (message, client){
     var cmd = message.content.substring(2); //prefix.length
     var args = cmd.split(" ");
     cmd = args[0];
@@ -28,7 +28,7 @@ exports.exec = function (message){
         LevelModule.getLevel(message);
     }
     if (cmd === 'ranking') {
-        LevelModule.getRanking(message);
+        LevelModule.getRanking(message,client);
     }
     if (cmd === 'sauce'){
         FunModule.randSend(message);
