@@ -34,7 +34,9 @@ function sendAll(wh, message){
 }
 
 exports.exec = function (message) {
-    message.channel.createWebhook(message.member.nickname, message.author.avatarURL)
-    .then(wh => wh.edit(message.member.nickname, message.author.avatarURL))
-    .then(wh => sendAll(wh, message));
+	let name = message.member.nickname || message.author.username;
+    message.channel.createWebhook(name, message.author.avatarURL)
+    .then(wh => wh.edit(name, message.author.avatarURL))
+    .then(wh => sendAll(wh, message))
+    .catch(error => console.log(error));
 }
