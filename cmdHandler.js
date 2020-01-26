@@ -27,7 +27,7 @@ exports.exec = function (message){
     if (cmd === 'rank') {
         LevelModule.getLevel(message);
     }
-    if (cmd === 'rank') {
+    if (cmd === 'ranking') {
         LevelModule.getRanking(message);
     }
     if (cmd === 'sauce'){

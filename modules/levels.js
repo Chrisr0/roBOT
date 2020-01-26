@@ -58,11 +58,23 @@ exports.getLevel = function (message) {
 	});
 }
 
-exports.getRanking = function (message) {
+exports.getRanking = function (message,client) {
     pool.query(getRanking, [message.guild.id], function (error, results, fields) {
         if (error) {
             return console.error(error.message);
         }
         console.log(results);
+        let ranking = "";
+        let counter = 0;
+        results.forEach(async(result) => {
+            let user = await client.fetchUser(result.client);
+            let member = await message.guild.fetchMember(user);
+            let name = member.nickname || user.username;
+            ranking += `${counter + 1}. ${name} Level: ${result.level}`;
+            counter++;
+            if(counter === results.length){
+                message.channel.send(ranking);
+            }
+        });
     });
 }
