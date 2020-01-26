@@ -27,6 +27,9 @@ exports.exec = function (message){
     if (cmd === 'rank') {
         LevelModule.getLevel(message);
     }
+    if (cmd === 'rank') {
+        LevelModule.getRanking(message);
+    }
     if (cmd === 'sauce'){
         FunModule.randSend(message);
     }

@@ -15,6 +15,7 @@ exports.init = function () {
 
 var getScore = "SELECT * FROM scores WHERE user = ? AND guild = ?";
 var setScore = "INSERT INTO scores (id,user,guild,exp,level) VALUES (?,?,?,?,?) ON DUPLICATE KEY UPDATE exp = ?, level = ?";
+var getRanking = "SELECT user, exp, level FROM scores WHERE guild = ? ORDER BY level DESC, exp DESC";
 
 exports.addLevel = function (message) {
     pool.query(getScore, [message.author.id, message.guild.id], function (error, results, fields) {
@@ -55,4 +56,13 @@ exports.getLevel = function (message) {
 	    }
 	    message.reply(`Masz ${results[0].exp} pd i ${results[0].level} poziom.`);
 	});
+}
+
+exports.getRanking = function (message) {
+    pool.query(getRanking, [message.guild.id], function (error, results, fields) {
+        if (error) {
+            return console.error(error.message);
+        }
+        console.log(results);
+    });
 }
