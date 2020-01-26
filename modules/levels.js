@@ -63,14 +63,13 @@ exports.getRanking = function (message,client) {
         if (error) {
             return console.error(error.message);
         }
-        console.log(results);
         let ranking = "";
         let counter = 0;
         results.forEach(async(result) => {
             let user = await client.fetchUser(result.user);
             let member = await message.guild.fetchMember(user);
             let name = member.nickname || user.username;
-            ranking += `${counter + 1}. ${name} Level: ${result.level}`;
+            ranking += `${counter + 1}. ${name} Level: ${result.level}\n`;
             counter++;
             if(counter === results.length){
                 message.channel.send(ranking);
