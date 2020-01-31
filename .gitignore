@@ -4,3 +4,6 @@
 
 /.vs/slnx.sqlite
 /.vs
+.env
+/node_modules
+/package-lock.json
