@@ -12,6 +12,7 @@
     "querystring": "0.2.0",
     "random-puppy": "Chrisr0/random-puppy#master",
     "mysql": "2.18.1",
-    "dotenv": "8.2.0"
+    "dotenv": "8.2.0",
+    "canvas": "2.6.1"
   }
 }
