@@ -26,7 +26,7 @@ module.exports = {
                 "url": "",
                 "color": 16374921,
                 "footer": {
-                    "text": "Similarity: "
+                    "text": "Podobieństwo: "
                 },
                 "image": {
                     "url": ""   //result picture
