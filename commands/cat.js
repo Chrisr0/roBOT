@@ -17,7 +17,7 @@ module.exports = {
         let queryString = querystring.stringify(query_params);
 
         const options = {
-            url: catApiUrl + '?${queryString}',
+            url: catApiUrl + `?${queryString}`,
             headers: {
                 'x-api-key': process.env.CATAPI_KEY
             }

@@ -17,7 +17,7 @@ module.exports = {
         let queryString = querystring.stringify(query_params);
 
         const options = {
-            url: dogApiUrl + '?${queryString}',
+            url: dogApiUrl + `?${queryString}`,
             headers: {
                 'x-api-key': process.env.DOGAPI_KEY
             }
