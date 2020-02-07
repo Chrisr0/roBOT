@@ -77,7 +77,7 @@ module.exports = {
             console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
             if (!JSON.parse(body).results) message.reply(`Brak wyników`);
             let game = JSON.parse(body).results[0];
-            request(rawgApiUrl + game.id, function (error, response, body) {
+            request(rawgApiUrl + "/" + game.id, function (error, response, body) {
                 if (!JSON.parse(body).id) message.reply(`Brak wyników`);
                 let game = JSON.parse(body);
                 embed.embed.title = game.name;
