@@ -93,7 +93,7 @@ module.exports = {
                 embed.embed.fields[1].value = tmp;
                 tmp = "";
                 game.stores.forEach(element => {
-                    tmp += `[${element.store.name}](${element.url})), `;
+                    tmp += `[${element.store.name}](${element.url}), `;
                 });
                 embed.embed.fields[2].value = tmp;
                 tmp = "";
