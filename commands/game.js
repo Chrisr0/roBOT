@@ -27,8 +27,9 @@ module.exports = {
         let embed = {
             "embed": {
                 "title": "tytul",
-                "description": "TODO opis",
-                //"url": "TODO url",
+                "description": "opis",
+                "url": "https://discordapp.com",
+                "timestamp": "1111-11-11T11:11:11.111Z",
                 "color": 12811819,
                 "footer": {
                     "text": "Źródło: rawg.io"
@@ -36,7 +37,7 @@ module.exports = {
                 "image": {
                     "url": "okladka"
                 },
-                "fields": [
+                "fields": [ //TODO add field if info present
                   {
                       "name": "Data premiery:",
                       "value": "data",
@@ -44,22 +45,27 @@ module.exports = {
                   },
                   {
                       "name": "Platformy:",
-                      "value": "TODO platformy",
+                      "value": "platformy",
                       "inline": "true"
                   },
                   {
+                    "name": "Sklepy:",
+                    "value": "sklepy",
+                    "inline": "true"
+                  },
+                  {
                       "name": "Gatunki:",
-                      "value": "TODO gatunki",
+                      "value": "gatunki",
                       "inline": "true"
                   },
                   {
                       "name": "Deweloperzy:",
-                      "value": "TODO deweloperzy",
+                      "value": "deweloperzy",
                       "inline": "true"
                   },
                   {
                       "name": "Wydawcy:",
-                      "value": "TODO wydawcy",
+                      "value": "wydawcy",
                       "inline": "true"
                   }
                 ]
@@ -71,12 +77,42 @@ module.exports = {
             console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
             if (!JSON.parse(body).results) message.reply(`Brak wyników`);
             let game = JSON.parse(body).results[0];
-            embed.embed.title = game.name;
-            //embed.embed.description = movie.overview;
-            //embed.embed.url = "https://www.themoviedb.org/movie/" + movie.id;
-            embed.embed.image.url = game.background_image;
-            embed.embed.fields[0].value = game.released;
-            message.channel.send(embed);
+            request(rawgApiUrl + game.id, function (error, response, body) {
+                if (!JSON.parse(body).id) message.reply(`Brak wyników`);
+                let game = JSON.parse(body);
+                embed.embed.title = game.name;
+                embed.embed.description = game.description_raw;
+                embed.embed.url = game.website;
+                embed.embed.timestamp = game.updated;
+                embed.embed.image.url = game.background_image;
+                embed.embed.fields[0].value = game.released;
+                let tmp = "";
+                game.platforms.forEach(element => {
+                    tmp += `${element.platform.name}, `;
+                });
+                embed.embed.fields[1].value = tmp;
+                tmp = "";
+                game.stores.forEach(element => {
+                    tmp += `[${element.store.name}](${element.url})), `;
+                });
+                embed.embed.fields[2].value = tmp;
+                tmp = "";
+                game.genres.forEach(element => {
+                    tmp += `${element.name}, `;
+                });
+                embed.embed.fields[3].value = tmp;
+                tmp = "";
+                game.developers.forEach(element => {
+                    tmp += `${element.name}, `;
+                });
+                embed.embed.fields[4].value = tmp;
+                tmp = "";
+                game.publishers.forEach(element => {
+                    tmp += `${element.name}, `;
+                });
+                embed.embed.fields[5].value = tmp;
+                message.channel.send(embed);
+            });
         });
     },
 };
