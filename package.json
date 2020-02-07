@@ -1,30 +1,18 @@
 {
-
   "name": "roBOT",
-
   "description": "Test Bot",
-
   "version": "0.0.0",
-
   "main": "bot.js",
-
   "scripts": {
-
     "start": "node bot.js"
-
   },
-
-    "dependencies": {
-
-        "discord.js": "11.5.1",
-
-        "request": "2.81.0",
-
-        "querystring": "0.2.0",
-
-        "random-puppy": "Chrisr0/random-puppy#master",
-
-        "mysql": "2.18.1"
-    }
-
+  "dependencies": {
+    "discord.js": "11.5.1",
+    "request": "2.81.0",
+    "querystring": "0.2.0",
+    "random-puppy": "Chrisr0/random-puppy#master",
+    "mysql": "2.18.1",
+    "dotenv": "8.2.0",
+    "canvas": "2.6.1"
+  }
 }
