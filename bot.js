@@ -23,7 +23,7 @@ const talkedRecently = new Set();
 const cooldowns = new Discord.Collection();
 
 
-require('dotenv').config();
+//require('dotenv').config();
 
 
 client.on('ready', () => {
