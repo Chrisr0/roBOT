@@ -20,7 +20,7 @@ module.exports = {
             let msg = "";
             console.log(options.url);
             tags.forEach(element => {
-                msg += `${element.name}\n`;
+                msg += `\n\`${element.name}\``;
             });
             message.reply(msg);
         });
