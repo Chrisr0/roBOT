@@ -13,6 +13,9 @@
     "random-puppy": "Chrisr0/random-puppy#master",
     "mysql": "2.18.1",
     "dotenv": "8.2.0",
-    "canvas": "2.6.1"
+    "canvas": "2.6.1",
+    "ffmpeg-static": "4.0.1",
+    "node-opus": "0.3.3",
+    "ytdl-core": "2.0.0"
   }
 }
