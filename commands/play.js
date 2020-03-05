@@ -10,7 +10,7 @@ module.exports = {
         console.log(message.member);
         if (message.member.voiceChannel) {
             const connection = await message.member.voiceChannel.join();
-            connection.playStream(ytdl(args[0],{quality:[140]}));
+            connection.playStream(ytdl(args[0],{quality:[91,92,93,94,95]}));
         } else {
             message.reply('You need to join a voice channel first!');
         }
