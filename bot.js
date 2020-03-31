@@ -7,6 +7,8 @@ const spoiler = require('./utility/spoiler.js');
 
 const prefix = 't.';
 
+let connection;
+
 console.log('Start');
 
 const client = new Discord.Client();
