@@ -8,7 +8,7 @@ module.exports = {
     async execute(message, args) {
         console.log(message.member);
         if (message.member.voiceChannel) {
-            const dispatcher = message.client.connection;
+            const dispatcher = message.client.connection.dispatcher;
             dispatcher.resume();
         } else {
             message.reply('You need to join a voice channel first!');
