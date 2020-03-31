@@ -3,8 +3,7 @@ const ytdl = require('ytdl-core');
 module.exports = {
     name: 'pause',
     description: 'Pause music from youtube <BETA>!',
-    args: true,
-    usage: '<url>',
+    args: false,
     cooldown: 5,
     async execute(message, args) {
         console.log(message.member);
