@@ -16,6 +16,7 @@
     "canvas": "2.6.1",
     "ffmpeg-static": "4.0.1",
     "node-opus": "0.3.3",
-    "ytdl-core": "2.0.0"
+    "ytdl-core": "2.0.0",
+    "simple-youtube-api": "5.2.1"
   }
 }

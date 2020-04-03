@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 
+//require('dotenv').config();
+
 const GreetModule = require('./modules/greeting.js');
 const level = require('./utility/levels.js');
 const spoiler = require('./utility/spoiler.js');
@@ -25,7 +27,7 @@ const talkedRecently = new Set();
 const cooldowns = new Discord.Collection();
 
 
-//require('dotenv').config();
+
 
 
 client.on('ready', () => {

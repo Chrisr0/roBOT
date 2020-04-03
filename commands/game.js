@@ -10,8 +10,9 @@ module.exports = {
     usage: '<"title">',
     cooldown: 15,
     execute(message, args) {
-        let string = message.content.match(/".*?"/).toString();
+        let string = message.content.match(/".*?"/);
         if (!string) return message.reply("Musisz podać tytuł w cudzysłowach");
+        string = string.toString();
 
         string = string.replace(" ", "+");
  
