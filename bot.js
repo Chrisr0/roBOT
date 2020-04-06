@@ -6,10 +6,9 @@ const fs = require('fs');
 const GreetModule = require('./modules/greeting.js');
 const level = require('./utility/levels.js');
 const spoiler = require('./utility/spoiler.js');
+const music = require('./utility/music.js');
 
 const prefix = 't.';
-
-let connection;
 
 console.log('Start');
 
@@ -34,7 +33,6 @@ client.on('ready', () => {
 
     console.log('I am ready!');
     client.user.setPresence({ status: 'online', game: { name: 't.help' } });
-
 });
 
 client.on('message', message => {

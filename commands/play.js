@@ -1,6 +1,7 @@
 const ytdl = require('ytdl-core');
 const YouTube = require('simple-youtube-api');
 const ytapi = new YouTube(process.env.YT_KEY);
+const music = require('../utility/music.js');
 
 
 module.exports = {
@@ -11,7 +12,7 @@ module.exports = {
     cooldown: 5,
     async execute(message, args) {
         if (message.member.voiceChannel) {
-            let result;
+            var result;
             if(ytdl.validateURL(args[0])||ytdl.validateID(args[0])){
                 url = args[0];
             }else{
@@ -20,7 +21,7 @@ module.exports = {
                 result = await ytapi.searchVideos(string.toString(),1);
                 url = result[0].url;
             }
-            const connection = await message.member.voiceChannel.join();
+            //const connection = await message.member.voiceChannel.join();
             let vidInfo = await ytapi.getVideo(url);
             let chaInfo = await ytapi.getChannelByID(vidInfo.channel.id);
             let embed = {
@@ -41,19 +42,41 @@ module.exports = {
                 }
             };
             embed.embed.title = vidInfo.title;
-            embed.embed.description = result[0].description;
+            embed.embed.description = vidInfo.description.substring(0, 200)+' ...',
             embed.embed.url = 'https://www.youtube.com/watch?v=' + vidInfo.id;
             embed.embed.timestamp = vidInfo.publishedAt;
             embed.embed.thumbnail.url = vidInfo.thumbnails.default.url;
             embed.embed.author.name = chaInfo.title;
             embed.embed.author.url = 'https://www.youtube.com/channel/' + chaInfo.id;
             embed.embed.author.icon_url = chaInfo.thumbnails.default.url;
-            message.channel.send("Playing now:");
+            message.channel.send("Added to queue:");
             message.channel.send(embed);
-            connection.playStream(ytdl(url));
-            message.client.connection = connection;
+
+            if(!music.connection[0] || music.connection[0].status == 4){
+                let connection = await message.member.voiceChannel.join();
+                music.connection[0] = connection;
+            }
+            music.queue.push({
+                "vid":{
+                    "title":vidInfo.title,
+                    "desc":vidInfo.description.substring(0, 200)+' ...',
+                    "url":"https://www.youtube.com/watch?v=" + vidInfo.id,
+                    "time":vidInfo.publishedAt,
+                    "thumb":vidInfo.thumbnails.default.url
+                },
+                "cha":{
+                    "title":chaInfo.title,
+                    "url":"https://www.youtube.com/channel/" + chaInfo.id,
+                    "thumb":chaInfo.thumbnails.default.url
+                },
+                "channel":message.channel
+            });
+            if(!music.connection[0].dispatcher || music.connection[0].dispatcher.destroyed){
+                //music.connection = 'test';
+                music.play();
+            }
         } else {
             message.reply('You need to join a voice channel first!');
         }
-    },
+    }
 };

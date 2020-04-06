@@ -1,4 +1,5 @@
 const ytdl = require('ytdl-core');
+const music = require('../utility/music.js');
 
 module.exports = {
     name: 'resume',
@@ -8,8 +9,7 @@ module.exports = {
     async execute(message, args) {
         console.log(message.member);
         if (message.member.voiceChannel) {
-            const dispatcher = message.client.connection.dispatcher;
-            dispatcher.resume();
+            music.connection[0].dispatcher.resume();
         } else {
             message.reply('You need to join a voice channel first!');
         }
