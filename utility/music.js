@@ -27,17 +27,17 @@ function play() {
 
     song[0] = queue.shift();
 
-    embed.embed.title = song.vid.title;
-    embed.embed.description = song.vid.desc;
-    embed.embed.url = song.vid.url;
-    embed.embed.timestamp = song.vid.time;
-    embed.embed.thumbnail.url = song.vid.thumb;
-    embed.embed.author.name = song.cha.title;
-    embed.embed.author.url = song.cha.url;
-    embed.embed.author.icon_url = song.cha.thumb;
-    song.channel.send("Playing now:");
-    song.channel.send(embed);
-    let dispatcher = connection[0].playStream(ytdl(song.vid.url));
+    embed.embed.title = song[0].vid.title;
+    embed.embed.description = song[0].vid.desc;
+    embed.embed.url = song[0].vid.url;
+    embed.embed.timestamp = song[0].vid.time;
+    embed.embed.thumbnail.url = song[0].vid.thumb;
+    embed.embed.author.name = song[0].cha.title;
+    embed.embed.author.url = song[0].cha.url;
+    embed.embed.author.icon_url = song[0].cha.thumb;
+    song[0].channel.send("Playing now:");
+    song[0].channel.send(embed);
+    let dispatcher = connection[0].playStream(ytdl(song[0].vid.url));
     dispatcher.on('end', () => {
         console.log("END: " + queue.length);
         play();
