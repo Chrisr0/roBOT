@@ -2,6 +2,7 @@ const ytdl = require('ytdl-core');
 
 let queue = []
 let connection = [null];
+let song = [];
 function play() {
 
     if (!queue.length) return
@@ -24,7 +25,7 @@ function play() {
         }
     };
 
-    let song = queue.shift();
+    song[0] = queue.shift();
 
     embed.embed.title = song.vid.title;
     embed.embed.description = song.vid.desc;
@@ -46,5 +47,6 @@ function play() {
 module.exports = {
     connection: connection,
     queue: queue,
+    song: song,
     play: play
 }
