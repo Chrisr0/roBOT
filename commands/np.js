@@ -10,6 +10,24 @@ module.exports = {
            
             let song = music.song[0];
 
+            let embed = {
+                "embed": {
+                    "title": "title",
+                    "description": "description",
+                    "url": "https://youtube.com",
+                    "color": 10473177,
+                    "timestamp": "2001-01-01T01:01:01.001Z",
+                    "thumbnail": {
+                        "url": "https://cdn.discordapp.com/embed/avatars/0.png"
+                    },
+                    "author": {
+                        "name": "author name",
+                        "url": "https://youtube.com",
+                        "icon_url": "https://cdn.discordapp.com/embed/avatars/0.png"
+                    }
+                }
+            };
+
             embed.embed.title = song.vid.title;
             embed.embed.description = song.vid.desc;
             embed.embed.url = song.vid.url;
