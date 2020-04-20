@@ -33,7 +33,7 @@ const apiUrl = "https://api.waifulabs.com/generate_big";
 
 module.exports = {
     name: 'waifu',
-    description: 'Generator WifuLabs',
+    description: 'Generator WaifuLabs',
     usage: '<pose> <details> <color palette>',
     args: true,
     cooldown: 15,

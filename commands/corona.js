@@ -37,7 +37,9 @@ module.exports = {
                     ]
                 }
             };
-            let res = JSON.parse(body)[0];
+            let res = JSON.parse(body);
+            console.log(res.length);
+            res = res[res.length-1];
             embed.embed.timestamp = res.Date;
             embed.embed.fields[0].value = res.Confirmed;
             embed.embed.fields[1].value = res.Deaths;

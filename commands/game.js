@@ -38,38 +38,7 @@ module.exports = {
                 "image": {
                     "url": "okladka"
                 },
-                "fields": [ //TODO add field if info present
-                  {
-                      "name": "Data premiery:",
-                      "value": "data",
-                      "inline": "true"
-                  },
-                  {
-                      "name": "Platformy:",
-                      "value": "platformy",
-                      "inline": "true"
-                  },
-                  {
-                    "name": "Sklepy:",
-                    "value": "sklepy",
-                    "inline": "true"
-                  },
-                  {
-                      "name": "Gatunki:",
-                      "value": "gatunki",
-                      "inline": "true"
-                  },
-                  {
-                      "name": "Deweloperzy:",
-                      "value": "deweloperzy",
-                      "inline": "true"
-                  },
-                  {
-                      "name": "Wydawcy:",
-                      "value": "wydawcy",
-                      "inline": "true"
-                  }
-                ]
+                "fields": []
             }
         }
 
@@ -86,32 +55,69 @@ module.exports = {
                 embed.embed.url = game.website;
                 embed.embed.timestamp = game.updated;
                 embed.embed.image.url = game.background_image;
-                embed.embed.fields[0].value = game.released;
+                if (game.released) {
+                    embed.embed.fields.push({
+                        "name": "Data premiery:",
+                        "value": game.released,
+                        "inline": "true"
+                    });
+                }
+                //embed.embed.fields[0].value = game.released;
                 let tmp = "";
                 game.platforms.forEach(element => {
                     tmp += `${element.platform.name}, `;
                 });
-                embed.embed.fields[1].value = tmp;
+                if (tmp) {
+                    embed.embed.fields.push({
+                        "name": "Platformy:",
+                        "value": tmp,
+                        "inline": "true"
+                    });
+                }
                 tmp = "";
                 game.stores.forEach(element => {
                     tmp += `[${element.store.name}](${element.url}), `;
                 });
-                embed.embed.fields[2].value = tmp;
+                if (tmp) {
+                    embed.embed.fields.push({
+                        "name": "Sklepy:",
+                        "value": tmp,
+                        "inline": "true"
+                    });
+                }
                 tmp = "";
                 game.genres.forEach(element => {
                     tmp += `${element.name}, `;
                 });
-                embed.embed.fields[3].value = tmp;
+                if (tmp) {
+                    embed.embed.fields.push({
+                        "name": "Gatunki:",
+                        "value": tmp,
+                        "inline": "true"
+                    });
+                }
                 tmp = "";
                 game.developers.forEach(element => {
                     tmp += `${element.name}, `;
                 });
-                embed.embed.fields[4].value = tmp;
+                if (tmp) {
+                    embed.embed.fields.push({
+                        "name": "Deweloperzy:",
+                        "value": tmp,
+                        "inline": "true"
+                    });
+                }
                 tmp = "";
                 game.publishers.forEach(element => {
                     tmp += `${element.name}, `;
                 });
-                embed.embed.fields[5].value = tmp;
+                if (tmp) {
+                    embed.embed.fields.push({
+                        "name": "Wydawcy:",
+                        "value": tmp,
+                        "inline": "true"
+                    });
+                }
                 message.channel.send(embed);
             });
         });

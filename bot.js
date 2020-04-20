@@ -1,12 +1,12 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 
-//require('dotenv').config();
+require('dotenv').config();
 
-const GreetModule = require('./modules/greeting.js');
 const level = require('./utility/levels.js');
 const spoiler = require('./utility/spoiler.js');
 const music = require('./utility/music.js');
+const spawner = require('./utility/waifuspawner.js');
 
 const prefix = 't.';
 
@@ -37,8 +37,8 @@ client.on('ready', () => {
 
 client.on('message', message => {
     if (message.author.bot) return;
-
     if (!talkedRecently.has(message.author.id)) {
+        spawner.spawn(message);
         level.addLevel(message);
         talkedRecently.add(message.author.id);
         setTimeout(() => {
@@ -90,8 +90,10 @@ client.on('message', message => {
         }
     }
 
-    timestamps.set(message.author.id, now);
-    setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+    if(message.author.id != 323059628558516225){
+        timestamps.set(message.author.id, now);
+        setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+    }
 
     try {
         command.execute(message, args);
@@ -104,7 +106,13 @@ client.on('message', message => {
 });
 
 client.on('guildMemberAdd', member => {
-    GreetModule.send(member); //TODO
+    const channel = member.guild.channels.find(ch => ch.name === '💬');
+
+    // Do nothing if the channel wasn't found on this server
+    if (!channel) return;
+
+    // Send the message, mentioning the member
+    channel.send(`Witaj ${member}, życzymy miłej gry :tada::hugging: !`);
 });
 
 
