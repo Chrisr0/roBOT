@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 
-require('dotenv').config();
+//require('dotenv').config();
 
 const level = require('./utility/levels.js');
 const spoiler = require('./utility/spoiler.js');
@@ -38,7 +38,9 @@ client.on('ready', () => {
 client.on('message', message => {
     if (message.author.bot) return;
     if (!talkedRecently.has(message.author.id)) {
-        spawner.spawn(message);
+        if(message.channel.id == 664443994272563203){
+            spawner.spawn(message);
+        }
         level.addLevel(message);
         talkedRecently.add(message.author.id);
         setTimeout(() => {
