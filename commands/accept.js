@@ -11,7 +11,8 @@ module.exports = {
     usage: '<id>',
     async execute(message, args) {
 
-        if(fight.invite[0] || message.author.id != fight.invite[0].id){
+
+        if(!fight.invite[0] || message.author.id != fight.invite[0].id){
             return message.reply("Nie zostałes wyzwany")
         }
 

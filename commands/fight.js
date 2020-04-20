@@ -21,7 +21,9 @@ module.exports = {
 
 //TODO sprawdzac czy znaleziono postac o id
 
-        if(!message.mentions.users.first().id || message.mentions.users.first().id == message.author.id)
+        if(!message.mentions.users.first().id || message.mentions.users.first().id == message.author.id){
+            return message.reply("Musisz kogos wskazac");
+        }
 
         if(message.mentions.users.first()){
             invite[0] = {id: message.mentions.users.first().id, char: result[0]};
