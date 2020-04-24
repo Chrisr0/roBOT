@@ -1,8 +1,10 @@
 const sql = require('../utility/sql.js');
 const util = require('util');
 const { createCanvas, loadImage } = require('canvas');
+const request = require('request');
 
 const query = util.promisify(sql.pool.query).bind(sql.pool);
+const arequest = util.promisify(request);
 
 module.exports = {
     name: 'view',
@@ -19,7 +21,10 @@ module.exports = {
 
         const canvas = createCanvas(225, 350);
         var ctx = canvas.getContext('2d');
-        var img1 = await loadImage(`https://media.kitsu.io/characters/images/${result[0].gid}/original.jpg`);
+        let img = await arequest(`https://script.google.com/macros/s/AKfycbxaHN3LvcMLBPt-eScm3VrtmaiMPNxDrILX51qU0u3WJPT5UGIh/exec?q=${result[0].gid}`);
+        img = JSON.parse(img.body).image;
+        let buff = new Buffer.from(img, 'base64');
+        var img1 = await loadImage(buff);
         ctx.drawImage(img1, 0, 0);
         if(result[0].is_gold){
             var img2 = await loadImage("res/frame.png");
