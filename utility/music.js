@@ -37,7 +37,11 @@ function play() {
     embed.embed.author.icon_url = song[0].cha.thumb;
     song[0].channel.send("Playing now:");
     song[0].channel.send(embed);
-    let dispatcher = connection[0].playStream(ytdl(song[0].vid.url));
+    let stream = ytdl(song[0].vid.url);
+    stream.on('info', (info, format) => {
+        console.log("On info:", format);
+    })
+    let dispatcher = connection[0].playStream(stream);
     dispatcher.on('end', () => {
         console.log("END: " + queue.length);
         play();
