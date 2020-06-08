@@ -3,6 +3,7 @@ const music = require('../utility/music.js');
 module.exports = {
     name: 'remove',
     description: 'Remove music from queue <BETA>!',
+    usage: '<song_id>',
     cooldown: 3,
     async execute(message, args) {
         if (message.member.voiceChannel) {

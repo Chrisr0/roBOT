@@ -25,6 +25,9 @@ module.exports = {
         let char1 = fight.invite[0].char;
         let char2 = result[0];
 
+        let hp1 = char1.HP;
+        let hp2 = char2.HP;
+
         fight.invite[0] = null;
 
         let turn = 1;
@@ -79,10 +82,14 @@ module.exports = {
         let loser;
         if(char1.HP > 0){
             winner = char1;
+            winner.HP = hp1;
             loser = char2;
+            loser.HP = hp2;
         }else{
             winner = char2;
+            winner.HP = hp2;
             loser = char1;
+            loser.HP = hp1;
         }
 
         winner.exp += 10;
