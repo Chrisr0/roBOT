@@ -13,13 +13,13 @@ module.exports = {
 
 
         if(!fight.invite[0] || message.author.id != fight.invite[0].id){
-            return message.reply("Nie zostałes wyzwany")
+            return message.reply("You weren't challenged")
         }
 
         let result = await query(sql.getCharacter, args[0]);
         
         if(result[0].owner_id != `${message.guild.id}-${message.author.id}`){
-            return message.reply("Nie posiadasz postaci o takim id");
+            return message.reply("You're not the owner of this character");
         }
 
         let char1 = fight.invite[0].char;
@@ -32,8 +32,22 @@ module.exports = {
             turn = 2;
         }
         let log = "";
-        log += "1: " + char1.id + "| " + char1.name + " " + char1.surname + "\n";
-        log += "2: " + char2.id + "| " + char2.name + " " + char2.surname + "\n\n"
+        log += "1: " + char1.id + "| " + char1.name;
+        if(char1.middlename){
+            log += " " + char1.middlename;
+        }
+        if(char1.surname){
+            log += " " + char1.surname;
+        }
+        log += "\n";
+        log += "2: " + char2.id + "| " + char2.name;
+        if(char2.middlename){
+            log += " " + char2.middlename;
+        }
+        if(char2.surname){
+            log += " " + char2.surname;
+        }
+        log += "\n\n";
         while(char1.HP > 0 && char2.HP > 0){
             if(turn == 1){
                 if(Math.random() <= (char2.EVA / 100)){
@@ -57,44 +71,50 @@ module.exports = {
             }
         }
 
-        log += "\n1: " + char1.HP + " HP\n";
-        log += "2: " + char2.HP + " HP";
+        log += "\n1: " + (Math.round(char1.HP*10)/10).toFixed(1) + " HP\n";
+        log += "2: " + (Math.round(char2.HP*10)/10).toFixed(1) + " HP";
 
         message.channel.send(log);
-        if(char2.HP > 0){
-            let exp = char2.exp + 10;
-            let lvl = char2.lvl;
-            if (exp > 100){
-                exp -= 100;
-                lvl++;
-            }
-            await query(sql.updateCharacterLevel,[exp,lvl,char2.id])
-        }else{
-            let exp = char2.exp + 5;
-            let lvl = char2.lvl;
-            if (exp > 100){
-                exp -= 100;
-                lvl++;
-            }
-            await query(sql.updateCharacterLevel,[exp,lvl,char2.id])
-        }
+        let winner;
+        let loser;
         if(char1.HP > 0){
-            let exp = char1.exp + 10;
-            let lvl = char1.lvl;
-            if (exp > 100){
-                exp -= 100;
-                lvl++;
-            }
-            await query(sql.updateCharacterLevel,[exp,lvl,char1.id])
+            winner = char1;
+            loser = char2;
         }else{
-            let exp = char1.exp + 5;
-            let lvl = char1.lvl;
-            if (exp > 100){
-                exp -= 100;
-                lvl++;
-            }
-            await query(sql.updateCharacterLevel,[exp,lvl,char1.id])
+            winner = char2;
+            loser = char1;
         }
+
+        winner.exp += 10;
+        while (winner.exp > 100){
+            winner.exp -= 100;
+            winner.lvl++;
+            winner.HP++;
+            winner.DMG++;
+            winner.SPD++;
+            if(winner.EVA<50)
+                winner.EVA++;
+            if(winner.DEF<75)
+                winner.DEF++;
+        }
+        console.log(winner);
+        await query(sql.updateCharacterLevel,[winner.exp,winner.lvl,winner.HP,winner.DMG,winner.SPD,winner.EVA,winner.DEF,winner.id]);
+
+        loser.exp += 5;
+        while (loser.exp > 100){
+            loser.exp -= 100;
+            loser.lvl++;
+            loser.HP++;
+            loser.DMG++;
+            loser.SPD++;
+            if(loser.EVA<50)
+                loser.EVA++;
+            if(loser.DEF<75)
+                loser.DEF++;
+        }
+        console.log(loser);
+        await query(sql.updateCharacterLevel,[loser.exp,loser.lvl,loser.HP,loser.DMG,loser.SPD,loser.EVA,loser.DEF,loser.id]);
+
     }
 
 

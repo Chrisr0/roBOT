@@ -6,7 +6,6 @@ module.exports = {
     description: 'Show song queue <BETA>!',
     cooldown: 5,
     async execute(message, args) {
-        if (message.member.voiceChannel) {
            
             let queue = "Queue:";
             if(music.queue.length == 0){
@@ -17,6 +16,5 @@ module.exports = {
             }
 
             message.channel.send(queue);
-        }     
     }
 };

@@ -38,15 +38,6 @@ function play() {
     song[0].channel.send("Playing now:");
     song[0].channel.send(embed);
     let stream = ytdl(song[0].vid.url, { highWaterMark: 1 << 25 });
-    /*stream.on('info', (info, format) => {
-        console.log("On info:", format);
-    })*/
-    /*stream.on('progress', (chunk, dBytes, bytes) => {
-        console.log("On progress chunk:", chunk, "\n Downloaded Bytes:", dBytes, "/", bytes,"\n Left:", bytes-dBytes);
-    })
-    stream.on('response', (response) => {
-        console.log("On response: ", response);
-    })*/
     let dispatcher = connection[0].playStream(stream);
     dispatcher.on('end', () => {
         console.log("END: " + queue.length);

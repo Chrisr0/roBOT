@@ -4,7 +4,7 @@ const apiUrl = 'https://api.covid19api.com/live/country/poland/status/status';
 
 module.exports = {
     name: 'corona',
-    description: 'Informacje na temat wirusa w Polsce.',
+    description: 'Info about COVID-19 in Poland.',
     cooldown: 30,
     execute(message, args) {
 
@@ -14,24 +14,24 @@ module.exports = {
 
             let embed = {
                 "embed": {
-                    "title": "**COVID-19 Obecny stan w Polsce:**",
+                    "title": "**COVID-19 Current info in Poland:**",
                     "color": 13632027,
                     "timestamp": "2001-01-01T01:01:01.001Z",
                     "fields": [
                       {
-                          "name": "Potwierdzone:",
+                          "name": "Confirmed:",
                           "value": "milion"
                       },
                       {
-                          "name": "Zgony: (lol)",
+                          "name": "Deaths:",
                           "value": "milion"
                       },
                       {
-                          "name": "Wyleczone:",
+                          "name": "Cured:",
                           "value": "zero"
                       },
                       {
-                          "name": "Aktywne:",
+                          "name": "Active:",
                           "value": "nikt nie przezyl"
                       }
                     ]

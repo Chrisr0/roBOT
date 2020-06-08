@@ -17,6 +17,7 @@
     "ffmpeg-static": "4.0.1",
     "node-opus": "0.3.3",
     "ytdl-core": "2.1.2",
+    "ytpl": "0.1.21",
     "simple-youtube-api": "5.2.1"
   }
 }

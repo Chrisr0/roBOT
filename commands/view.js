@@ -16,7 +16,7 @@ module.exports = {
         let result = await query(sql.getCharacter, args[0]);
         
         if(result[0].owner_id != `${message.guild.id}-${message.author.id}`){
-            return message.reply("Nie posiadasz postaci o takim id");
+            return message.reply("You're not the owner of this character");
         }
 
         const canvas = createCanvas(225, 350);
@@ -91,8 +91,13 @@ module.exports = {
         }
 
         let name = result[0].name;
+        let middlename = result[0].middlename;
         let surname = result[0].surname;
         name = name[0].toUpperCase() + name.slice(1);
+        if(middlename){
+            middlename = middlename[0].toUpperCase() + middlename.slice(1);
+            name = name + " " + middlename;
+        }
         if(surname){
             surname = surname[0].toUpperCase() + surname.slice(1);
             name = name + " " + surname;

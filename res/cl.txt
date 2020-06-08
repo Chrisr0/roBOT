@@ -1,0 +1,10 @@
++ nowa komenda - changelog
++ nowa komenda - remove
++ dodane levelowanie postaci
+= możliwość odtwarzania playlist z yt (tylko z linku)
+= wiekszosc komend przeszla na angielski (pisalem w nocy, zapewne jest w chuj bledow)
+= dodane wsparcie dla trzyczlonowych nazw postaci
+= zmieniona karta poziomu
+= bugfixy
+- nie potrzeba cudzyslowow przy komendach game,movie,play
+

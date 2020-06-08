@@ -2,7 +2,7 @@ const sql = require('../utility/sql.js');
 
 module.exports = {
     name: 'ranking',
-    description: 'Wyświetla ranking serwera.',
+    description: 'Show server ranking',
     cooldown: 15,
     aliases: ['rank'],
     execute(message, args) {

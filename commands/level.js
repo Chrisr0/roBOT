@@ -1,12 +1,12 @@
 const sql = require('../utility/sql.js');
-const { createCanvas } = require('canvas');
+const { createCanvas, loadImage } = require('canvas');
 const util = require('util');
 
 const query = util.promisify(sql.pool.query).bind(sql.pool);
 
 module.exports = {
     name: 'level',
-    description: 'Wyświetla poziom gracza;',
+    description: 'Show user level;',
     cooldown: 15,
     aliases: ['lvl'],
     async execute(message, args) {
@@ -18,9 +18,11 @@ module.exports = {
         let prc=results[0].exp/expNeeded;
         const canvas = createCanvas(300, 150);
         var ctx = canvas.getContext('2d');
+        let bg = await loadImage("https://miro.medium.com/max/1836/1*NzLGpAE4V7LJCfibfgIlHA@2x.png");
+        
+        ctx.drawImage(bg, 0, 0, 300, 150);
         ctx.fillStyle = 'white';
-        ctx.fillRect(0, 0, 300, 150);
-        ctx.fillStyle = 'black';
+        ctx.strokeStyle = 'white';
         ctx.beginPath();
         ctx.arc(40, 40, 20, Math.PI * 0.5, Math.PI * 1.5, false);
         ctx.moveTo(40, 60);

@@ -66,7 +66,7 @@ client.on('message', message => {
     if (!command) return;
 
     if (command.args && !args.length) {
-        let reply = `Ta komenda wymaga argumentów, ${message.author}!`;
+        let reply = `This command requires arguments, ${message.author}!`;
         
         if (command.usage) {
             reply += `\nUżycie: \`${prefix}${command.name} ${command.usage}\``;
@@ -88,7 +88,7 @@ client.on('message', message => {
 
         if (now < expirationTime) {
             const timeLeft = (expirationTime - now) / 1000;
-            return message.reply(`Poczekaj ${timeLeft.toFixed(1)} sekund(y) przed ponownym użyciem komendy \`${command.name}\`.`);
+            return message.reply(`Wait ${timeLeft.toFixed(1)} seconds before using this command again \`${command.name}\`.`);
         }
     }
 
@@ -101,7 +101,7 @@ client.on('message', message => {
         command.execute(message, args);
     } catch (error) {
         console.error(error);
-        message.reply('Wystąpił błąd w trakcie wykonywania komendy!');
+        message.reply('Error ocured!');
     }
 
     //CmdHandler.exec(message,client);
@@ -114,8 +114,19 @@ client.on('guildMemberAdd', member => {
     if (!channel) return;
 
     // Send the message, mentioning the member
-    channel.send(`Witaj ${member}, życzymy miłej gry :tada::hugging: !`);
+    channel.send(`Hello ${member}, have a nice game :tada::hugging: !`);
 });
 
 
 client.login(process.env.BOT_TOKEN);
+
+
+
+
+
+
+process.on('uncaughtException', function (err) {
+    console.error("\x1b[31m",(new Date).toLocaleTimeString('pl-PL') + ' uncaughtException:', err.message)
+    console.error(err.stack)
+    process.exit(1)
+})

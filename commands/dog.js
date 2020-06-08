@@ -5,7 +5,7 @@ const dogApiUrl = 'https://api.thedogapi.com/v1/images/search';
 
 module.exports = {
     name: 'dog',
-    description: 'Losowe zdjęcie pieseła!',
+    description: 'Random dog picture!',
     cooldown: 30,
     execute(message, args) {
         const query_params = {

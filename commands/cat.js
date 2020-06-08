@@ -5,7 +5,7 @@ const catApiUrl = 'https://api.thecatapi.com/v1/images/search';
 
 module.exports = {
     name: 'cat',
-    description: 'Losowe zdjęcie koteła!',
+    description: 'Random cat picture!',
     cooldown: 30,
     execute(message, args) {
         const query_params = {

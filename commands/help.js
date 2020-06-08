@@ -1,6 +1,6 @@
 module.exports = {
     name: 'help',
-    description: 'Lista komend lub pomoc do konkretnej komendy.',
+    description: 'Command list or specific command info',
     aliases: ['h'],
     usage: '[nazwa komendy]',
     cooldown: 5,
@@ -10,9 +10,9 @@ module.exports = {
         const { commands } = message.client;
 
         if (!args.length) {
-            data.push('Lista komend:');
-            data.push(commands.map(command => command.name).join(', '));
-            data.push(`\nWyślij \`${prefix}help [nazwa komendy]\` by uzyskać szczegółowe informacje o komendzie!`);
+            data.push('Command list:');
+            data.push(commands.map(command => command.name).join('\n'));
+            data.push(`\nSend \`${prefix}help [command]\` to get detailed information about command`);
 
             return message.channel.send(data, { split: true })
         }
@@ -20,16 +20,16 @@ module.exports = {
         const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
         if (!command) {
-            return message.reply('Nieprawidłowa komenda!');
+            return message.reply('Incorrect command!');
         }
 
-        data.push(`**Nazwa:** ${command.name}`);
+        data.push(`**Name:** ${command.name}`);
 
         if (command.aliases) data.push(`**Alias:** ${command.aliases.join(', ')}`);
-        if (command.description) data.push(`**Opis:** ${command.description}`);
-        if (command.usage) data.push(`**Użycie:** ${prefix}${command.name} ${command.usage}`);
+        if (command.description) data.push(`**Description:** ${command.description}`);
+        if (command.usage) data.push(`**Usage:** ${prefix}${command.name} ${command.usage}`);
 
-        data.push(`**Cooldown:** ${command.cooldown || 3} sekund(y)`);
+        data.push(`**Cooldown:** ${command.cooldown || 3} seconds`);
 
         message.channel.send(data, { split: true });
     },

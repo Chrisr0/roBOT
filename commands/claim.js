@@ -8,22 +8,26 @@ module.exports = {
     name: 'claim',
     description: 'Claim waifu!',
     args: true,
-    usage: '<name> <surname>*',
+    usage: '<name> <middlename>* <surname>*',
     async execute(message, args) {
         if(spawner.lastSpawn[0]){
             if(spawner.lastSpawn[0].name != args[0].toLowerCase()){
-                return message.reply("Nieprawidłowe imie\\nazwisko");
+                return message.reply("Incorrect name");
             }
-            if(spawner.lastSpawn[0].surname && spawner.lastSpawn[0].surname != args[1].toLowerCase()){
-                return message.reply("Nieprawidłowe imie\\nazwisko");
+            if(spawner.lastSpawn[0].middlename && spawner.lastSpawn[0].middlename != args[1].toLowerCase()){
+                return message.reply("Incorrect name");
+            }
+            let tmpSur = args[2] || args[1];
+            if(spawner.lastSpawn[0].surname && spawner.lastSpawn[0].surname != tmpSur.toLowerCase()){
+                return message.reply("Incorrect name");
             }
                 let character = spawner.lastSpawn[0];
                 spawner.lastSpawn[0] = null;
-                await query(sql.claimCharacter, [character.name, character.surname, character.gid, character.HP, character.DMG, character.SPD, character.EVA, character.DEF, character.is_gold, `${message.guild.id}-${message.author.id}`]);
-                message.reply(`Złapano: ${character.name} ${character.surname}`);
+                await query(sql.claimCharacter, [character.name, character.middlename, character.surname, character.gid, character.HP, character.DMG, character.SPD, character.EVA, character.DEF, character.is_gold, `${message.guild.id}-${message.author.id}`]);
+                message.reply(`Claimed: ${character.name} ${character.middlename} ${character.surname}`);
         }
         else{
-            message.reply("Brak postaci do złapania");
+            message.reply("No character to claim");
         }
     },
 };

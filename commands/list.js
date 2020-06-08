@@ -13,14 +13,21 @@ module.exports = {
         let results = await query(sql.listCharacters,[`${message.guild.id}-${message.author.id}`,page]);
         let embed = {
             "embed": {
-                "title": "Lista postaci",
+                "title": "Character list",
                 "description": ""
             }
         }
         console.log(results);
         let tmp = "";
         for(i = 0; i < results.length; i++){
-            tmp = tmp + results[i].id + "| " + results[i].name + " " + results[i].surname + "\n";
+            tmp = tmp + results[i].id + "| " + results[i].name;
+            if(results[i].middlename){
+                tmp += " " + results[i].middlename;
+            }
+            if(results[i].surname){
+                tmp += " " + results[i].surname;
+            }
+            tmp += "\n";
         }
         embed.embed.description = tmp;
         message.reply(embed);

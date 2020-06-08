@@ -7,9 +7,6 @@ function clean(text) {
 
 module.exports = {
     name: 'eval',
-    description: 'Lista komend lub pomoc do konkretnej komendy.',
-    aliases: ['h'],
-    usage: '[nazwa komendy]',
     args: true,
     cooldown: 5,
     execute(message, args) {

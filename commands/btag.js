@@ -4,7 +4,7 @@ const booruApi = 'https://danbooru.donmai.us/tags.json';
 
 module.exports = {
     name: 'btag',
-    description: 'Wyszukaj tag z danbooru!',
+    description: 'Lookup tag from danbooru!',
     usage: '<tag>',
     cooldown: 10,
     execute(message, args) {

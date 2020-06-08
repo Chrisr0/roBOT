@@ -5,7 +5,7 @@ const list = ["new", "hot"];
 
 module.exports = {
     name: 'anime',
-    description: 'Losowy obrazek anime!\n**Źródła:** ' + animeReddits,
+    description: 'Random anime image!\n**Sources:** ' + animeReddits,
     cooldown: 10,
     execute(message, args) {
         randomPuppy(animeReddits[Math.floor(Math.random() * animeReddits.length)], list[Math.floor(Math.random() * list.length)])

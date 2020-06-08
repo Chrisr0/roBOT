@@ -1,17 +1,20 @@
 const music = require('../utility/music.js');
 
 module.exports = {
-    name: 'skip',
-    description: 'Skip music from youtube <BETA>!',
-    cooldown: 5,
+    name: 'remove',
+    description: 'Remove music from queue <BETA>!',
+    cooldown: 3,
     async execute(message, args) {
         if (message.member.voiceChannel) {
             if(music.connection[0]){
-                if(music.connection[0].dispatcher){
-                    music.connection[0].dispatcher.end();
-                }else{
-                    message.reply('Nothing is playing!');
+                if(args[0] > music.queue.length-1){
+                    return message.reply('Song in queue not found');
                 }
+
+                let song = music.queue.splice(args[0],1); 
+
+                return message.channel.send("Removed: " + args[0] + "| " + song[0].vid.title);
+
             }else{
                 message.reply('Bot is not connected to voicechat!');
             }

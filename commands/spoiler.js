@@ -2,7 +2,7 @@ const spoiler = require('../utility/spoiler.js');
 
 module.exports = {
     name: 'spoiler',
-    description: 'Automatyczny spoiler tag do wysyłanych przez użytkownika zdjęć',
+    description: 'Add spoiler tag to every image',
     cooldown: 5,
     execute(message, args) {
         if (spoiler.autoSpoiler.has(message.author.id)) {

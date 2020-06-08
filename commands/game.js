@@ -5,13 +5,12 @@ const rawgApiUrl = 'https://api.rawg.io/api/games';
 
 module.exports = {
     name: 'game',
-    description: 'Informacje na temat gry!',
+    description: 'Show info about game',
     args: true,
-    usage: '<"title">',
+    usage: '<title>',
     cooldown: 15,
     execute(message, args) {
-        let string = message.content.match(/".*?"/);
-        if (!string) return message.reply("Musisz podać tytuł w cudzysłowach");
+        let string = args.join();
         string = string.toString();
 
         string = string.replace(" ", "+");
@@ -33,7 +32,7 @@ module.exports = {
                 "timestamp": "1111-11-11T11:11:11.111Z",
                 "color": 12811819,
                 "footer": {
-                    "text": "Źródło: rawg.io"
+                    "text": "Source: rawg.io"
                 },
                 "image": {
                     "url": "okladka"
@@ -45,10 +44,10 @@ module.exports = {
         request(options, function (error, response, body) {
             console.error('error:', error); // Print the error if one occurred
             console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-            if (!JSON.parse(body).results) message.reply(`Brak wyników`);
+            if (!JSON.parse(body).results || JSON.parse(body).count == 0) return message.reply(`No results`);
             let game = JSON.parse(body).results[0];
             request(rawgApiUrl + "/" + game.id, function (error, response, body) {
-                if (!JSON.parse(body).id) message.reply(`Brak wyników`);
+                if (!JSON.parse(body).id) return message.reply(`No results`);
                 let game = JSON.parse(body);
                 embed.embed.title = game.name;
                 embed.embed.description = game.description_raw;
@@ -57,7 +56,7 @@ module.exports = {
                 embed.embed.image.url = game.background_image;
                 if (game.released) {
                     embed.embed.fields.push({
-                        "name": "Data premiery:",
+                        "name": "Release date:",
                         "value": game.released,
                         "inline": "true"
                     });
@@ -69,7 +68,7 @@ module.exports = {
                 });
                 if (tmp) {
                     embed.embed.fields.push({
-                        "name": "Platformy:",
+                        "name": "Platforms:",
                         "value": tmp,
                         "inline": "true"
                     });
@@ -80,7 +79,7 @@ module.exports = {
                 });
                 if (tmp) {
                     embed.embed.fields.push({
-                        "name": "Sklepy:",
+                        "name": "Stores:",
                         "value": tmp,
                         "inline": "true"
                     });
@@ -91,7 +90,7 @@ module.exports = {
                 });
                 if (tmp) {
                     embed.embed.fields.push({
-                        "name": "Gatunki:",
+                        "name": "Genres:",
                         "value": tmp,
                         "inline": "true"
                     });
@@ -102,7 +101,7 @@ module.exports = {
                 });
                 if (tmp) {
                     embed.embed.fields.push({
-                        "name": "Deweloperzy:",
+                        "name": "Developers:",
                         "value": tmp,
                         "inline": "true"
                     });
@@ -113,7 +112,7 @@ module.exports = {
                 });
                 if (tmp) {
                     embed.embed.fields.push({
-                        "name": "Wydawcy:",
+                        "name": "Publishers:",
                         "value": tmp,
                         "inline": "true"
                     });

@@ -6,7 +6,6 @@ module.exports = {
     description: 'Show current playing song <BETA>!',
     cooldown: 5,
     async execute(message, args) {
-        if (message.member.voiceChannel) {
            
             let song = music.song[0];
 
@@ -39,6 +38,5 @@ module.exports = {
 
             message.channel.send("Now playing:");
             message.channel.send(embed);
-        }     
     }
 };

@@ -5,13 +5,12 @@ const tmdbApiUrl = 'https://api.themoviedb.org/3/search/movie';
 
 module.exports = {
     name: 'movie',
-    description: 'Informacje na temat filmu!',
+    description: 'Show info about movie',
     args: true,
-    usage: '<"title">',
+    usage: '<title>',
     cooldown: 15,
     execute(message, args) {
-        let string = message.content.match(/".*?"/);
-        if (!string) return message.reply("Musisz podać tytuł w cudzysłowach");
+        let string = args.join();
         string = string.toString();
 
         string = string.replace(" ", "+");
@@ -33,14 +32,14 @@ module.exports = {
                 "url": "url",
                 "color": 12811819,
                 "footer": {
-                    "text": "Źródło: themoviedb.org"
+                    "text": "Source: themoviedb.org"
                 },
                 "image": {
                     "url": "okladka"
                 },
                 "fields": [
                   {
-                      "name": "Data premiery:",
+                      "name": "Release date:",
                       "value": "data"
                   }
                 ]
@@ -50,7 +49,7 @@ module.exports = {
         request(options, function (error, response, body) {
             console.error('error:', error); // Print the error if one occurred
             console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-            if (!JSON.parse(body).results) message.reply(`Brak wyników`);
+            if (!JSON.parse(body).results) return message.reply(`No results`);
             let movie = JSON.parse(body).results[0];
             embed.embed.title = movie.title;
             embed.embed.description = movie.overview;
