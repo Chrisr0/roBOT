@@ -19,6 +19,8 @@ module.exports = {
                 try{
                     member = await message.guild.fetchMember(user);
                 }
+                catch(e){
+                }
                 if (member){ 
                     let name = member.nickname || user.username;
                     ranking += `${i + 1}. ${name} Level: ${result.level}\n`;
