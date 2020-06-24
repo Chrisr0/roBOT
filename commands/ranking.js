@@ -14,7 +14,7 @@ module.exports = {
             let counter = 0;
             results.forEach(async(result) => {
                 let user = await message.client.fetchUser(result.user);
-                if(!user) return;
+                console.log(user);
                 let member = await message.guild.fetchMember(user);
                 let name = member.nickname || user.username;
                 ranking += `${counter + 1}. ${name} Level: ${result.level}\n`;
