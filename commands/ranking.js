@@ -12,13 +12,15 @@ module.exports = {
             }
             let ranking = "";
             let counter = 0;
+            let i = 0;
             results.forEach(async(result) => {
                 let user = await message.client.fetchUser(result.user);
-                console.log(user);
                 let member = await message.guild.fetchMember(user);
-                console.log(member);
-                let name = member.nickname || user.username;
-                ranking += `${counter + 1}. ${name} Level: ${result.level}\n`;
+                if (member){ 
+                    let name = member.nickname || user.username;
+                    ranking += `${i + 1}. ${name} Level: ${result.level}\n`;
+                    i++;
+                }
                 counter++;
                 if(counter === results.length){
                     message.channel.send(ranking);
