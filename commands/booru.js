@@ -11,7 +11,7 @@ module.exports = {
         let r = "s";
         if (args) {
             if (args[0] == "q" || args[0] == "e" || args[0] == "s") {
-                if (!message.channel.nsfw) return message.reply('This is not NSFW channel');
+                if (!message.channel.nsfw && args[0] != "s") return message.reply('This is not NSFW channel');
                 r = args[0];
                 if (args[1]) r = r + "+" + args[1];
             } else {
