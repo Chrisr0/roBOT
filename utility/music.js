@@ -37,7 +37,15 @@ function play() {
     embed.embed.author.icon_url = song[0].cha.thumb;
     song[0].channel.send("Playing now:");
     song[0].channel.send(embed);
-    let stream = ytdl(song[0].vid.url, { highWaterMark: 1 << 25 });
+    let stream = ytdl(song[0].vid.url, {
+        highWaterMark: 1 << 25,
+        requestOptions: {
+            headers: {
+                'X-Youtube-Identity-Token': process.env.xyit,
+                'Cookie': 'SID='+process.env.sid+'; HSID='+process.env.hsid+'; SSID='+process.env.ssid
+            }
+        }
+    });
     let dispatcher = connection[0].playStream(stream);
     dispatcher.on('end', () => {
         console.log("END: " + queue.length);

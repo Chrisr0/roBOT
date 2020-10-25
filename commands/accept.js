@@ -91,7 +91,7 @@ module.exports = {
             loser = char1;
             loser.HP = hp1;
         }
-
+//todo komunikat przy poziomie \ zaokraglanie damage
         winner.exp += 10;
         while (winner.exp > 100){
             winner.exp -= 100;
