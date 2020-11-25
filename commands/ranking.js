@@ -5,7 +5,7 @@ module.exports = {
     description: 'Show server ranking',
     cooldown: 15,
     aliases: ['rank'],
-    execute(message, args) {
+    async execute(message, args) {
         sql.pool.query(sql.getRanking, [message.guild.id], function (error, results, fields) {
             if (error) {
                 return console.error(error.message);
