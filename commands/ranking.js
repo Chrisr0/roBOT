@@ -13,8 +13,9 @@ module.exports = {
             let ranking = "";
             let counter = 0;
             let i = 0;
-            results.forEach(async(result) => {
-                let user = await message.client.fetchUser(result.user);
+            let j = 0;
+            for(j; j < results.length; j++){
+            let user = await message.client.fetchUser(result[j].user);
                 let member;
                 try{
                     member = await message.guild.fetchMember(user);
@@ -23,14 +24,14 @@ module.exports = {
                 }
                 if (member){ 
                     let name = member.nickname || user.username;
-                    ranking += `${i + 1}. ${name} Level: ${result.level}\n`;
+                    ranking += `${i + 1}. ${name} Level: ${result[j].level}\n`;
                     i++;
                 }
                 counter++;
                 if(counter === results.length){
                     message.channel.send(ranking);
                 }
-            });
+            }
         });
     },
 };
