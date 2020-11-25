@@ -15,7 +15,7 @@ module.exports = {
             let i = 0;
             let j = 0;
             for(j; j < results.length; j++){
-            let user = await message.client.fetchUser(result[j].user);
+            let user = await message.client.fetchUser(results[j].user);
                 let member;
                 try{
                     member = await message.guild.fetchMember(user);
@@ -24,7 +24,7 @@ module.exports = {
                 }
                 if (member){ 
                     let name = member.nickname || user.username;
-                    ranking += `${i + 1}. ${name} Level: ${result[j].level}\n`;
+                    ranking += `${i + 1}. ${name} Level: ${results[j].level}\n`;
                     i++;
                 }
                 counter++;
