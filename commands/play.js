@@ -13,6 +13,7 @@ async function asyncForEach(array, callback) {
 async function start(message, url){
     let vidInfo = await ytapi.getVideo(url);
     let chaInfo = await ytapi.getChannelByID(vidInfo.channel.id);
+    let member = await message.guild.fetchMember(message.author);
     let embed = {
         "embed": {
             "title": "title",
@@ -45,7 +46,7 @@ async function start(message, url){
         console.log(music.connection[0].status);
     }
     if(!music.connection[0] || music.connection[0].status == 4){
-        let connection = await message.member.voiceChannel.join();
+        let connection = await member.voiceChannel.join();
         music.connection[0] = connection;
     }
     music.queue.push({
@@ -73,6 +74,7 @@ async function start(message, url){
 async function startP(message, videos, url){
     let plaInfo = await ytapi.getPlaylist(url);
     let chaInfo = await ytapi.getChannelByID(plaInfo.channel.id);
+    let member = await message.guild.fetchMember(message.author);
     let embed = {
         "embed": {
             "title": "title",
@@ -105,7 +107,7 @@ async function startP(message, videos, url){
         console.log(music.connection[0].status);
     }
     if(!music.connection[0] || music.connection[0].status == 4){
-        let connection = await message.member.voiceChannel.join();
+        let connection = await member.voiceChannel.join();
         music.connection[0] = connection;
     }
 
@@ -143,7 +145,8 @@ module.exports = {
     usage: '<url>',
     cooldown: 5,
     async execute(message, args) {
-        if (message.member.voiceChannel) {
+        let member = await message.guild.fetchMember(message.author);
+        if (member.voiceChannel) {
             var result;
             console.log(args[0]);
             if(ytdl.validateURL(args[0])/*||ytdl.validateID(args[0])*/){
