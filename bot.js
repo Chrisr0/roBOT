@@ -117,6 +117,35 @@ client.on('guildMemberAdd', member => {
     channel.send(`Hello ${member}, have a nice game :tada::hugging: !`);
 });
 
+const goodbyes = [
+    "pa paa",
+    "baju baju",
+    "do jutra",
+    "ide grac w tekenna :ougi_pogardy:",
+    "ide robic obiad paaa",
+    "ide z psem hej",
+    "ide do sklepu"
+];
+
+client.on('voiceStateUpdate', (oldMember, newMember) => {
+    let newUserChannel = newMember.voiceChannel;
+    let oldUserChannel = oldMember.voiceChannel;
+  
+  
+    if(oldUserChannel === undefined && newUserChannel !== undefined) {
+  
+       // User Joins a voice channel
+  
+    } else if(newUserChannel === undefined){
+        if(newMember.user.id != 376769004062375937)return;
+        const channel = newMember.guild.channels.find(ch => ch.name === 'test-tekstowy');
+        let name = newMember.nickname || newMember.user.username;
+        channel.createWebhook(name, newMember.user.avatarURL)
+        .then(wh => wh.edit(name, newMember.user.avatarURL))
+        .then(wh => {wh.send(goodbyes[Math.floor(random(1, goodbyes.length))-1]);return wh})
+        .then(wh => wh.delete())
+    }
+});
 
 client.login(process.env.BOT_TOKEN);
 
@@ -130,3 +159,7 @@ process.on('uncaughtException', function (err) {
     console.error(err.stack)
     process.exit(1)
 })
+
+function random(mn, mx) {  
+    return Math.random() * (mx - mn) + mn;  
+}  
