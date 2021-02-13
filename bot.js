@@ -18,7 +18,9 @@ client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
-    client.commands.set(command.name, command);
+    if(!command.hidden){
+        client.commands.set(command.name, command);
+    }
 }
 
 
@@ -138,7 +140,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
   
     } else if(newUserChannel === undefined){
         if(newMember.user.id != 376769004062375937)return;
-        const channel = newMember.guild.channels.find(ch => ch.name === 'test-tekstowy');
+        const channel = newMember.guild.channels.find(ch => ch.id == 576536764194357260);
         let name = newMember.nickname || newMember.user.username;
         channel.createWebhook(name, newMember.user.avatarURL)
         .then(wh => wh.edit(name, newMember.user.avatarURL))
