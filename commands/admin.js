@@ -34,6 +34,14 @@ function disable(message,args){
     message.channel.send("Command disabled");
 }
 
+function broadcast(message, args){
+    args.shift();
+    let id = args.shift();
+    const lines = args.join(" ").split(";");
+    const channel = message.member.guild.channels.cache.find(ch => ch.id === id);
+    channel.send(lines);
+}
+
 module.exports = {
     name: 'admin',
     args: true,
@@ -50,6 +58,9 @@ module.exports = {
                 break;
             case 'disable':
                 disable(message,args);
+                break;
+            case 'broadcast':
+                broadcast(message,args);
                 break;
             default:
                 break;

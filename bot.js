@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const fs = require('fs');
 
 
-const dev = true;
+const dev = false;
 
 if(dev) require('dotenv').config();
 
