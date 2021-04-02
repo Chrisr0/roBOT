@@ -6,12 +6,14 @@ const pixiv = new PixivAppApi(process.env.pixemail, process.env.pixpassword, {
 
 let ts = null;
 
-pixiv.login();
+//pixiv.login();
+//TODO Potrzebne lepsze api
 
 module.exports = {
     name: 'pixiv',
     description: 'Recommended illustration from Pixiv',
     cooldown: 15,
+    disabled: true,
     async execute(message, args) {
         if(ts == null || ts < Date.now()){
             await pixiv.login();

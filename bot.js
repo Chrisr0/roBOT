@@ -1,18 +1,23 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 
-//require('dotenv').config();
+
+const dev = true;
+
+if(dev) require('dotenv').config();
 
 const level = require('./utility/levels.js');
 const spoiler = require('./utility/spoiler.js');
 const music = require('./utility/music.js');
 const spawner = require('./utility/waifuspawner.js');
 
-const prefix = 't.';
+const prefix = 'd.';
 
-console.log('Start');
+console.log('BOT Start');
 
 const client = new Discord.Client();
+client.prefix = prefix;
+
 
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
@@ -38,7 +43,7 @@ client.on('ready', () => {
 client.on('message', message => {
     if (message.author.bot) return;
     if (!talkedRecently.has(message.author.id)) {
-        if(message.channel.id == 664443994272563203){
+        if(message.channel.id == 664443994272563203 || dev){
             spawner.spawn(message);
         }
         level.addLevel(message);
@@ -48,7 +53,7 @@ client.on('message', message => {
         }, 60000);
     }
 
-    if (message.isMentioned(client.user)) message.reply('My prefix: ' + prefix);
+    if (message.mentions.has(client.user)) message.reply('My prefix: ' + prefix);
 
     if (!message.content.startsWith(prefix)) {
         if (spoiler.autoSpoiler.has(message.author.id) && message.attachments.array().length) {
@@ -98,7 +103,11 @@ client.on('message', message => {
     }
 
     try {
-        command.execute(message, args);
+        if(!command.disabled){
+            command.execute(message, args);
+        }else{
+            message.channel.send("Command temporarily disabled");
+        }
     } catch (error) {
         console.error(error);
         message.reply('Error ocured!');
@@ -117,9 +126,38 @@ client.on('guildMemberAdd', member => {
     channel.send(`Hello ${member}, have a nice game :tada::hugging: !`);
 });
 
+/*const goodbyes = [
+    "pa paa",
+    "baju baju",
+    "do jutra",
+    "ide grac w tekenna :ougi_pogardy:",
+    "ide robic obiad paaa",
+    "ide z psem hej",
+    "ide do sklepu"
+];
+
+const sleep = (waitTimeInMs) => new Promise(resolve => setTimeout(resolve, waitTimeInMs));
+
+client.on('voiceStateUpdate', (oldMember, newMember) => {
+    let newUserChannel = newMember.member.voice.channel;
+    let oldUserChannel = oldMember.member.voice.channel;
+
+    //console.log(newUserChannel);
+    if(oldUserChannel === null && newUserChannel !== null) {
+
+       // User Joins a voice channel
+        console.log("join");
+    } else if(newUserChannel === null){
+        if(newMember.member.user.id != 323059628558516225)return;
+        const channel = newMember.member.guild.channels.cache.find(ch => ch.name === 'test-tekstowy');
+        let name = newMember.member.nickname || newMember.member.user.username;
+        channel.createWebhook(name)
+        .then(wh => {wh.send(goodbyes[Math.floor(random(1, goodbyes.length))-1]);return wh})
+        .then(wh => wh.delete())
+    }
+});*/
 
 client.login(process.env.BOT_TOKEN);
-
 
 
 
@@ -130,3 +168,7 @@ process.on('uncaughtException', function (err) {
     console.error(err.stack)
     process.exit(1)
 })
+
+function random(mn, mx) {  
+    return Math.random() * (mx - mn) + mn;  
+} 

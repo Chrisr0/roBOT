@@ -10,10 +10,9 @@ async function asyncForEach(array, callback) {
     }
 }
 
-async function start(message, url){
+async function start(message, url, member, channel){
     let vidInfo = await ytapi.getVideo(url);
     let chaInfo = await ytapi.getChannelByID(vidInfo.channel.id);
-    let member = await message.guild.fetchMember(message.author);
     let embed = {
         "embed": {
             "title": "title",
@@ -39,14 +38,14 @@ async function start(message, url){
     embed.embed.author.name = chaInfo.title;
     embed.embed.author.url = 'https://www.youtube.com/channel/' + chaInfo.id;
     embed.embed.author.icon_url = chaInfo.thumbnails.default.url;
-    message.channel.send("Added to queue:");
-    message.channel.send(embed);
+    channel.send("Added to queue:");
+    channel.send(embed);
 
     if(music.connection[0]){
         console.log(music.connection[0].status);
     }
     if(!music.connection[0] || music.connection[0].status == 4){
-        let connection = await member.voiceChannel.join();
+        let connection = await member.voice.channel.join();
         music.connection[0] = connection;
     }
     music.queue.push({
@@ -62,7 +61,7 @@ async function start(message, url){
             "url":"https://www.youtube.com/channel/" + chaInfo.id,
             "thumb":chaInfo.thumbnails.default.url
         },
-        "channel":message.channel
+        "channel":channel
     });
     if(!music.connection[0].dispatcher || music.connection[0].dispatcher.destroyed){
         //music.connection = 'test';
@@ -145,13 +144,13 @@ module.exports = {
     usage: '<url>',
     cooldown: 5,
     async execute(message, args) {
-        let member = await message.guild.fetchMember(message.author);
-        if (member.voiceChannel) {
+        let member = await message.guild.members.fetch(message.author);
+        if (member.voice.channel) {
             var result;
             console.log(args[0]);
             if(ytdl.validateURL(args[0])/*||ytdl.validateID(args[0])*/){
                 url = args[0];
-                start(message, url);
+                start(message, url, member, message.channel);
             }else if(ytpl.validateURL(args[0])){
                 let res = await ytpl(args[0]);
                 startP(message, res.items, args[0]);
@@ -159,7 +158,7 @@ module.exports = {
                 let string = args.join();
                 result = await ytapi.searchVideos(string.toString(),1);
                 url = result[0].url;
-                start(message, url);
+                start(message, url, member, message.channel);
             }
             //const connection = await message.member.voiceChannel.join();
             

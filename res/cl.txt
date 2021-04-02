@@ -1,2 +1,4 @@
-+ nowa komenda - pixiv
-= usunięte ograniczenie wiekowe z t.play
+= Zmiana na nowsze wersje bibliotek
++ Poprawki bledow...
+- i pewnie miliard nowych
+- Tymczasowo wylaczone komendy anime i pixiv

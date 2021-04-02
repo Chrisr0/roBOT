@@ -15,10 +15,10 @@ module.exports = {
             let i = 0;
             let j = 0;
             for(j; j < results.length; j++){
-            let user = await message.client.fetchUser(results[j].user);
+            let user = await message.client.users.fetch(results[j].user);
                 let member;
                 try{
-                    member = await message.guild.fetchMember(user);
+                    member = await message.guild.members.fetch(user);
                 }
                 catch(e){
                 }

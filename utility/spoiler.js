@@ -12,8 +12,8 @@ function sendAll(wh, message){
             }]
         });
         counter.push(result);
-        if(counter.length === file.message.attachments.array().length){
-            file.message.delete();
+        if(counter.length === message.attachments.array().length){
+            message.delete();
             wh.delete()
             .catch(error => console.log(error));
         }
@@ -22,9 +22,9 @@ function sendAll(wh, message){
 }
 
 exports.exec = function (message) {
-	let name = message.member.nickname || message.author.username;
-    message.channel.createWebhook(name, message.author.avatarURL)
-    .then(wh => wh.edit(name, message.author.avatarURL))
+    let name = message.member.nickname || message.author.username;
+    let avatar = message.author.avatarURL({ format: 'png', dynamic: true, size: 2048 });
+    message.channel.createWebhook(name, {avatar: avatar})
     .then(wh => sendAll(wh, message))
     .catch(error => console.log(error));
 }

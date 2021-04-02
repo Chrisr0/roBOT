@@ -104,7 +104,6 @@ module.exports = {
             if(winner.DEF<75)
                 winner.DEF++;
         }
-        console.log(winner);
         await query(sql.updateCharacterLevel,[winner.exp,winner.lvl,winner.HP,winner.DMG,winner.SPD,winner.EVA,winner.DEF,winner.id]);
 
         loser.exp += 5;
@@ -119,7 +118,6 @@ module.exports = {
             if(loser.DEF<75)
                 loser.DEF++;
         }
-        console.log(loser);
         await query(sql.updateCharacterLevel,[loser.exp,loser.lvl,loser.HP,loser.DMG,loser.SPD,loser.EVA,loser.DEF,loser.id]);
 
     }

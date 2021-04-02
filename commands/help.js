@@ -5,14 +5,13 @@ module.exports = {
     usage: '[nazwa komendy]',
     cooldown: 5,
     execute(message, args) {
-        const prefix = 't.';
         const data = [];
         const { commands } = message.client;
 
         if (!args.length) {
             data.push('Command list:');
             data.push(commands.map(command => command.name).join('\n'));
-            data.push(`\nSend \`${prefix}help [command]\` to get detailed information about command`);
+            data.push(`\nSend \`${message.client.prefix}help [command]\` to get detailed information about command`);
 
             return message.channel.send(data, { split: true })
         }
@@ -27,7 +26,7 @@ module.exports = {
 
         if (command.aliases) data.push(`**Alias:** ${command.aliases.join(', ')}`);
         if (command.description) data.push(`**Description:** ${command.description}`);
-        if (command.usage) data.push(`**Usage:** ${prefix}${command.name} ${command.usage}`);
+        if (command.usage) data.push(`**Usage:** ${message.client.prefix}${command.name} ${command.usage}`);
 
         data.push(`**Cooldown:** ${command.cooldown || 3} seconds`);
 

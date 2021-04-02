@@ -4,9 +4,9 @@ let queue = []
 let connection = [null];
 let song = [];
 function play() {
-
-    if (!queue.length) return
-
+    console.log("bap");
+    if (!(queue.length > 0)) return
+    console.log("beep");
     let embed = {
         "embed": {
             "title": "title",
@@ -37,20 +37,24 @@ function play() {
     embed.embed.author.icon_url = song[0].cha.thumb;
     song[0].channel.send("Playing now:");
     song[0].channel.send(embed);
-    let stream = ytdl(song[0].vid.url, {
-        highWaterMark: 1 << 25,
-        requestOptions: {
-            headers: {
-                'X-Youtube-Identity-Token': process.env.xyit,
-                'Cookie': 'SID='+process.env.sid+'; HSID='+process.env.hsid+'; SSID='+process.env.ssid
-            }
-        }
-    });
-    let dispatcher = connection[0].playStream(stream);
-    dispatcher.on('end', () => {
-        console.log("END: " + queue.length);
-        play();
-    });
+
+    const dispatcher = connection[0]
+        .play(ytdl(song[0].vid.url/*, {
+                //highWaterMark: 1 << 25,
+                requestOptions: {
+                    headers: {
+                        //'X-Youtube-Identity-Token': process.env.xyit,
+                        //'Cookie': 'SID='+process.env.sid+'; HSID='+process.env.hsid+'; SSID='+process.env.ssid
+                        //'Cookie': 'HSID='+process.env.hsid+'; SSID='+process.env.ssid
+                    }
+                }
+            }*/)
+        )
+        .on("finish", () => {
+            song.length = 0;
+            play();
+        })
+        .on("error", error => console.error(error));
 }
 
 module.exports = {

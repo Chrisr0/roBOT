@@ -7,18 +7,20 @@
     "start": "node bot.js"
   },
   "dependencies": {
-    "discord.js": "11.5.1",
-    "request": "2.81.0",
+    "@discordjs/uws": "^10.149.0",
+    "canvas": "2.6.1",
+    "discord.js": "12.5.2",
+    "dotenv": "8.2.0",
+    "express": "^4.17.1",
+    "ffmpeg-static": "4.0.1",
+    "mysql": "2.18.1",
+    "node-opus": "^0.3.3",
+    "pixiv-app-api": "Chrisr0/pixiv-app-api#bugfix/cloudflare-captcha",
     "querystring": "0.2.0",
     "random-puppy": "Chrisr0/random-puppy#master",
-    "mysql": "2.18.1",
-    "dotenv": "8.2.0",
-    "canvas": "2.6.1",
-    "ffmpeg-static": "4.0.1",
-    "node-opus": "0.3.3",
-    "ytdl-core": "4.4.0",
-    "ytpl": "0.1.21",
+    "request": "2.81.0",
     "simple-youtube-api": "5.2.1",
-    "pixiv-app-api": "Chrisr0/pixiv-app-api#bugfix/cloudflare-captcha"
+    "ytdl-core": "4.4.1",
+    "ytpl": "0.1.21"
   }
 }

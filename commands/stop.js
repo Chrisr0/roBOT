@@ -6,7 +6,7 @@ module.exports = {
     cooldown: 5,
     async execute(message, args) {
         console.log(message.member);
-        if (message.member.voiceChannel) {
+        if (message.member.voice.channel) {
             music.queue.length = 0;
             music.connection[0].dispatcher.end();
             message.channel.send('Music stopped');

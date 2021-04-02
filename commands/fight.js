@@ -15,7 +15,7 @@ module.exports = {
 
         let result = await query(sql.getCharacter, args[1]);
 
-        if(!result){
+        if(!result[0]){
             return message.reply("Character not found");
         }
         

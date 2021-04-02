@@ -7,7 +7,7 @@ module.exports = {
     cooldown: 5,
     async execute(message, args) {
         console.log(message.member);
-        if (message.member.voiceChannel) {
+        if (message.member.voice.channel) {
             music.connection[0].dispatcher.resume();
         } else {
             message.reply('You need to join a voice channel first!');

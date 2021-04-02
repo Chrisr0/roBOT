@@ -21,8 +21,8 @@ exports.addLevel = function (message) {
         if (score.exp >= expNeeded) {
             score.exp -= expNeeded;
             score.level++;
-            const gg = message.guild.emojis.find(emoji => emoji.name === "gg");
-            message.channel.send(`${gg} ${message.author.username} reached ${score.level} level!`);
+            const gg = message.guild.emojis.resolve('827362487481532426');
+            message.channel.send(`<:gg:663152882237046816> ${message.author.username} reached ${score.level} level!`);
         }
         sql.pool.query(sql.setScore, [score.id, score.user, score.guild, score.exp, score.level, score.exp, score.level], function (error, results, fields) {
             if (error) {

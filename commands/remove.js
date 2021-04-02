@@ -6,7 +6,7 @@ module.exports = {
     usage: '<song_id>',
     cooldown: 3,
     async execute(message, args) {
-        if (message.member.voiceChannel) {
+        if (message.member.voice.channel) {
             if(music.connection[0]){
                 if(args[0] > music.queue.length-1){
                     return message.reply('Song in queue not found');

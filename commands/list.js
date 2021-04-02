@@ -17,7 +17,6 @@ module.exports = {
                 "description": ""
             }
         }
-        console.log(results);
         let tmp = "";
         for(i = 0; i < results.length; i++){
             tmp = tmp + results[i].id + "| " + results[i].name;

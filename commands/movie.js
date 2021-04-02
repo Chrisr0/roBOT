@@ -47,9 +47,8 @@ module.exports = {
         }
 
         request(options, function (error, response, body) {
-            console.error('error:', error); // Print the error if one occurred
-            console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-            if (!JSON.parse(body).results) return message.reply(`No results`);
+            if (error) console.error('error:', error); // Print the error if one occurred
+            if (!JSON.parse(body).results[0]) return message.reply(`No results`);
             let movie = JSON.parse(body).results[0];
             embed.embed.title = movie.title;
             embed.embed.description = movie.overview;
