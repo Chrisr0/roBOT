@@ -5,6 +5,7 @@
 +Dodana komenda imggen
 +Dodana komenda anime
 +Dodana komenda manga
+=Poprawki bugów
 -Usunieta komenda pixiv
 
 TODO Polaczyc komendy game,book,movie,anime,manga w jedna komende search
