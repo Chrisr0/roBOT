@@ -7,6 +7,7 @@
     "start": "node bot.js"
   },
   "dependencies": {
+    "node": "12.18.2",
     "@discordjs/uws": "^10.149.0",
     "canvas": "2.6.1",
     "discord.js": "12.5.2",
