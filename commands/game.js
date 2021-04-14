@@ -58,7 +58,7 @@ module.exports = {
                     embed.embed.fields.push({
                         "name": "Release date:",
                         "value": game.released,
-                        "inline": "true"
+                        "inline": true
                     });
                 }
                 //embed.embed.fields[0].value = game.released;
@@ -70,7 +70,7 @@ module.exports = {
                     embed.embed.fields.push({
                         "name": "Platforms:",
                         "value": tmp,
-                        "inline": "true"
+                        "inline": true
                     });
                 }
                 tmp = "";
@@ -81,7 +81,7 @@ module.exports = {
                     embed.embed.fields.push({
                         "name": "Stores:",
                         "value": tmp,
-                        "inline": "true"
+                        "inline": true
                     });
                 }
                 tmp = "";
@@ -92,7 +92,7 @@ module.exports = {
                     embed.embed.fields.push({
                         "name": "Genres:",
                         "value": tmp,
-                        "inline": "true"
+                        "inline": true
                     });
                 }
                 tmp = "";
@@ -103,7 +103,7 @@ module.exports = {
                     embed.embed.fields.push({
                         "name": "Developers:",
                         "value": tmp,
-                        "inline": "true"
+                        "inline": true
                     });
                 }
                 tmp = "";
@@ -114,7 +114,7 @@ module.exports = {
                     embed.embed.fields.push({
                         "name": "Publishers:",
                         "value": tmp,
-                        "inline": "true"
+                        "inline": true
                     });
                 }
                 message.channel.send(embed);

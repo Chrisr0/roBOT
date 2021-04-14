@@ -23,7 +23,7 @@ module.exports = {
             return message.reply("You're not the owner of this character");
         }
 
-        if(!message.mentions.users.first().id || message.mentions.users.first().id == message.author.id){
+        if(!message.mentions.users.first() || message.mentions.users.first().id == message.author.id){
             return message.reply("You must mention your opponent");
         }
 

@@ -1,8 +1,8 @@
 const anime = require('@freezegold/anime.js');
 
 module.exports = {
-    name: 'anime',
-    description: 'Show info about anime',
+    name: 'manga',
+    description: 'Show info about manga',
     args: true,
     usage: '<title>',
     cooldown: 15,
@@ -26,13 +26,13 @@ module.exports = {
             }
         }
 
-        anime.searchAnime(string, 1)
+        anime.searchManga(string, 1)
 		    .then(response => {
             const [ani] = response;
             //console.log(r);
             //if (!JSON.parse(body).results[0]) return message.reply(`No results`);
             //let movie = JSON.parse(body).results[0];
-            embed.embed.title = ani.titles.romaji;
+            embed.embed.title = ani.titles.enJp;
             embed.embed.description = ani.synposis;
             embed.embed.url = 'https://kitsu.io/anime/'+ani.id;
             embed.embed.image.url = ani.posterImage.medium;
@@ -60,22 +60,16 @@ module.exports = {
                     "value": ani.endDate,
                     "inline": true
                 });
-            }if (ani.subType) {
+            }if (ani.chapterCount) {
                 embed.embed.fields.push({
-                    "name": "Type:",
-                    "value": ani.subType,
+                    "name": "Chapter count:",
+                    "value": ani.chapterCount,
                     "inline": true
                 });
-            }if (ani.episodeCount) {
+            }if (ani.volumeCount) {
                 embed.embed.fields.push({
-                    "name": "Episode count:",
-                    "value": ani.episodeCount,
-                    "inline": true
-                });
-            }if (ani.episodeLength) {
-                embed.embed.fields.push({
-                    "name": "Episode length:",
-                    "value": ani.episodeLength,
+                    "name": "Volume count:",
+                    "value": ani.volumeCount,
                     "inline": true
                 });
             }

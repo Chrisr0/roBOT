@@ -1,4 +1,11 @@
-= Zmiana na nowsze wersje bibliotek
-+ Poprawki bledow...
-- i pewnie miliard nowych
-- Tymczasowo wylaczone komendy anime i pixiv
++Przywrocona komenda anime pod tymczasowo zmieniona nazwa ianime
++Dodana komenda meme
++Dodana komenda nsfw
++Dodana komenda book
++Dodana komenda imggen
++Dodana komenda anime
++Dodana komenda manga
+-Usunieta komenda pixiv
+
+TODO Polaczyc komendy game,book,movie,anime,manga w jedna komende search
+TODO Poprawic help do komendy imggen

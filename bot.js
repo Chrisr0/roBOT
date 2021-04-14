@@ -37,7 +37,7 @@ const cooldowns = new Discord.Collection();
 client.on('ready', () => {
 
     console.log('I am ready!');
-    client.user.setPresence({ status: 'online', game: { name: 't.help' } });
+    client.user.setPresence({activity: { name: prefix+'help' }, status: 'online' });
 });
 
 client.on('message', message => {
@@ -53,7 +53,7 @@ client.on('message', message => {
         }, 60000);
     }
 
-    if (message.mentions.has(client.user)) message.reply('My prefix: ' + prefix);
+    if (message.mentions.has(client.user) && !message.mentions.has(message.mentions.everyone)) message.reply('My prefix: ' + prefix);
 
     if (!message.content.startsWith(prefix)) {
         if (spoiler.autoSpoiler.has(message.author.id) && message.attachments.array().length) {
