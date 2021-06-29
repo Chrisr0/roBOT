@@ -23,7 +23,7 @@
     "random-puppy": "Chrisr0/random-puppy#master",
     "request": "2.81.0",
     "simple-youtube-api": "5.2.1",
-    "ytdl-core": "4.4.1",
+    "ytdl-core": "4.8.3",
     "ytpl": "0.1.21",
     "got": "11.8.2",
     "@freezegold/anime.js": "2.0.5-beta"
