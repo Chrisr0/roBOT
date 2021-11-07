@@ -70,10 +70,9 @@ async function start(message, url, member, channel){
     }
 }
 
-async function startP(message, videos, url){
+async function startP(message, videos, url, member, channel){
     let plaInfo = await ytapi.getPlaylist(url);
     let chaInfo = await ytapi.getChannelByID(plaInfo.channel.id);
-    let member = await message.guild.fetchMember(message.author);
     let embed = {
         "embed": {
             "title": "title",
@@ -99,14 +98,14 @@ async function startP(message, videos, url){
     embed.embed.author.name = chaInfo.title;
     embed.embed.author.url = 'https://www.youtube.com/channel/' + chaInfo.id;
     embed.embed.author.icon_url = chaInfo.thumbnails.default.url;
-    message.channel.send("Added " + videos.length + " videos to queue:");
-    message.channel.send(embed);
+    channel.send("Added " + videos.length + " videos to queue:");
+    channel.send(embed);
 
     if(music.connection[0]){
         console.log(music.connection[0].status);
     }
     if(!music.connection[0] || music.connection[0].status == 4){
-        let connection = await member.voiceChannel.join();
+        let connection = await member.voice.channel.join();
         music.connection[0] = connection;
     }
 
@@ -151,9 +150,9 @@ module.exports = {
             if(ytdl.validateURL(args[0])/*||ytdl.validateID(args[0])*/){
                 url = args[0];
                 start(message, url, member, message.channel);
-            }else if(ytpl.validateURL(args[0])){
+            }else if(ytpl.validateID(await ytpl.getPlaylistID(args[0]).catch(()=>{return "zzzzzzzzzzzzzz"}))){
                 let res = await ytpl(args[0]);
-                startP(message, res.items, args[0]);
+                startP(message, res.items, args[0], member, message.channel);
             }else{
                 let string = args.join();
                 result = await ytapi.searchVideos(string.toString(),1);

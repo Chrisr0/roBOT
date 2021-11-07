@@ -18,13 +18,12 @@
     "ffmpeg-static": "4.0.1",
     "mysql": "2.18.1",
     "node-opus": "^0.3.3",
-    "pixiv-app-api": "Chrisr0/pixiv-app-api#bugfix/cloudflare-captcha",
     "querystring": "0.2.0",
     "random-puppy": "Chrisr0/random-puppy#master",
     "request": "2.81.0",
     "simple-youtube-api": "5.2.1",
-    "ytdl-core": "4.8.3",
-    "ytpl": "0.1.21",
+    "ytdl-core": "4.9.1",
+    "ytpl": "2.2.3",
     "got": "11.8.2",
     "@freezegold/anime.js": "2.0.5-beta"
   }

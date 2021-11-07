@@ -8,7 +8,7 @@ module.exports = {
     name: 'imggen',
     description: 'Image generator\nAvailable tags:\n\t' + options.join('\n\t'),
     usage: '<tag> <args>',
-    cooldown: 30,
+    cooldown: 10,
     args: true,
     execute(message, args) {
         const arg = args.shift();

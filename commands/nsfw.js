@@ -11,6 +11,7 @@ module.exports = {
     cooldown: 30,
     args: true,
     execute(message, args) {
+        if (!message.channel.nsfw) return message.reply('This is not NSFW channel');
         const [arg] = args;
         if (options.includes(arg)){
             got(nekobot_end+arg)

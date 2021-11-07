@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 function clean(text) {
     if (typeof (text) === "string")
         return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
@@ -42,6 +44,16 @@ function broadcast(message, args){
     channel.send(lines);
 }
 
+//read changelog from file
+function changelog(message, args){
+    fs.readFile("./res/cl.txt", "utf8", function(err, data) {
+        if (err) throw err;
+        const channel = message.member.guild.channels.cache.find(ch => ch.id === "702533676294078565");
+        channel.send(data);
+    });
+}
+
+
 module.exports = {
     name: 'admin',
     args: true,
@@ -61,6 +73,20 @@ module.exports = {
                 break;
             case 'broadcast':
                 broadcast(message,args);
+                break;
+            case 'changelog':
+                changelog(message,args);
+                break;
+            case 'help':
+                message.channel.send("```\n" +
+                    "admin commands:\n" +
+                    "eval <code> - evaluates code\n" +
+                    "enable <command> - enables command\n" +
+                    "disable <command> - disables command\n" +
+                    "broadcast <channel id> <message> - broadcasts message to channel\n" +
+                    "changelog - shows changelog\n" +
+                    "help - shows this help\n" +
+                    "```");
                 break;
             default:
                 break;

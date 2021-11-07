@@ -7,3 +7,4 @@
 .env
 /node_modules
 /package-lock.json
+webpanel.js

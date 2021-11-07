@@ -11,7 +11,7 @@ module.exports = {
             if(music.queue.length == 0){
                 queue = "Queue is empty"
             }
-            for(i=0;i<music.queue.length;i++){
+            for(i=0;i<music.queue.length && i<15;i++){
                 queue += "\n" + i + "| " + music.queue[i].vid.title;
             }
 

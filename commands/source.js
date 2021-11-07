@@ -42,11 +42,11 @@ module.exports = {
             if (!JSON.parse(body).results) return message.reply("Not found!");
             console.log(JSON.parse(body).results[0]);
             result = JSON.parse(body).results[0];
-            embed.embed.title = result.data.source || result.data.title || "";
+            embed.embed.title = result.data.source || result.data.title || "No title found";
             if (result.data.ext_urls) embed.embed.url = result.data.ext_urls[0] || "";
             embed.embed.footer.text += ((result.header.similarity || "Error") + " %");
             embed.embed.image.url = result.header.thumbnail || "";
-            if (result.data.creator || result.data.member_name || result.data.pawoo_user_display_name) embed.embed.fields.push({ "name": "Creators:", "value": JSON.stringify(result.data.creator || result.data.member_name || result.data.pawoo_user_display_name), "inline": true });
+            if (result.data.creator || result.data.member_name || result.data.pawoo_user_display_name || result.data.twitter_user_handle) embed.embed.fields.push({ "name": "Creators:", "value": JSON.stringify(result.data.creator || result.data.member_name || result.data.pawoo_user_display_name || result.data.twitter_user_handle), "inline": true });
             if (result.data.characters) embed.embed.fields.push({ "name": "Characters:", "value": JSON.stringify(result.data.characters), "inline": true });
             if (result.data.material) embed.embed.fields.push({ "name": "Material:", "value": JSON.stringify(result.data.material), "inline": true });
             if (result.data.part) embed.embed.fields.push({ "name": "Part:", "value": JSON.stringify(result.data.part), "inline": true });

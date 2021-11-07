@@ -1,12 +1,16 @@
-+Przywrocona komenda anime pod tymczasowo zmieniona nazwa ianime
-+Dodana komenda meme
-+Dodana komenda nsfw
-+Dodana komenda book
-+Dodana komenda imggen
-+Dodana komenda anime
-+Dodana komenda manga
-=Poprawki bugów
--Usunieta komenda pixiv
++Dodana komenda fgoinfo
++Dodane komenda games(bardzo WIP)
+=Zmiana ianime na anime
+=Połączone komendy anime,book,manga,movie,game w search
+=Zmniejszony cooldown imggen
+=Poprawione t.source przy źródłach z twittera
+=Naprawiono t.play
+=Przywrócono możliwość odtwarzania playlist
+=naprawiono t.game
+=naprawiono t.anime
 
-TODO Polaczyc komendy game,book,movie,anime,manga w jedna komende search
-TODO Poprawic help do komendy imggen
+TODO 
+Imggen przy mentione w polu tekstu uzupelnij username
+Imggen przy laczeniu argumentow zmienia plus na spacje
+Update do v13
+Rewrite t.play

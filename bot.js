@@ -11,7 +11,10 @@ const spoiler = require('./utility/spoiler.js');
 const music = require('./utility/music.js');
 const spawner = require('./utility/waifuspawner.js');
 
-const prefix = 't.';
+var prefix = 't.';
+if(dev) {
+    prefix = 'd.';
+}
 
 console.log('BOT Start');
 
